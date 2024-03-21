@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\assets",
+    "\\src\\game",
+    "\\src\\game\\components",
+    "\\src\\game\\GameObjects"
+  ],
+  "SelectedNode": "\\src\\game\\main.ts",
+  "PreviewInSolutionExplorer": false
+}
