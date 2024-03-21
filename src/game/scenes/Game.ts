@@ -1,25 +1,28 @@
-import { EventBus } from '../EventBus';
-import { Scene } from 'phaser';
+import { Scene, Events, Cameras, GameObjects  } from 'phaser';
 import Monster from '../gameObjects/Monster';
+import { EventBus } from '../EventBus';
 
 export class Game extends Scene
 {
-    camera: Phaser.Cameras.Scene2D.Camera;
-    background: Phaser.GameObjects.Image;
-    gameText: Phaser.GameObjects.Text;
+    private _camera: Cameras.Scene2D.Camera;
+    private _background: GameObjects.Image;
 
     constructor ()
     {
         super('Game');
     }
 
+    initEvents() {
+    
+    }
+
     create ()
     {
-        this.camera = this.cameras.main;
-        this.camera.setBackgroundColor(0x00ff00);
+        this._camera = this.cameras.main;
+        this._camera.setBackgroundColor(0x00ff00);
 
-        this.background = this.add.image(512, 384, 'background');
-        this.background.setAlpha(0.5);
+        this._background = this.add.image(512, 384, 'background');
+        this._background.setAlpha(0.5);
 
 
         const monster = new Monster(this, 512, 384, 'greenSlime');
@@ -29,8 +32,8 @@ export class Game extends Scene
         EventBus.emit('current-scene-ready', this);
     }
 
-    changeScene ()
-    {
-        this.scene.start('GameOver');
+    createNewMonster() {
+        const monster = new Monster(this, 512, 384, 'greenSlime');
+        this.add.existing(monster);
     }
 }
