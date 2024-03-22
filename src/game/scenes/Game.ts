@@ -1,11 +1,13 @@
 import { Scene, Events, Cameras, GameObjects  } from 'phaser';
 import Monster from '../gameObjects/Monster';
 import { EventBus } from '../EventBus';
+import Player from '../Player';
 
 export class Game extends Scene
 {
     private _camera: Cameras.Scene2D.Camera;
     private _background: GameObjects.Image;
+    private _player: Player = new Player("", 0, [], []);
 
     constructor ()
     {

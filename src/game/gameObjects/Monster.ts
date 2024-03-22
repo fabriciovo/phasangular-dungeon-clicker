@@ -12,8 +12,8 @@ export default class Monster extends GameObjects.Sprite {
 
         this.initAnimations();
         this.mouseClick();
-        this._healthbar = new HealthBar(scene, x - 94, y + 48, this._hp, 20, this._maxHp);
         this.setScale(2)
+        this._healthbar = new HealthBar(scene, x - 94, y + 48, this._hp, 20, this._maxHp);
     }
 
     initEvents() {
@@ -33,7 +33,12 @@ export default class Monster extends GameObjects.Sprite {
     mouseClick(): void {
         this.setInteractive({ useHandCursor: true });
         this.on('pointerdown', (pointer: Input.Pointer) => {
-            EventBus.emit("attack")
+            this._healthbar.decrease(1);
+            this._hp--;
+            if(this._hp<=0){
+                this.destroy();
+                EventBus.emit("reward", 10);
+            }
         });
 
         this.on('pointerout',  (pointer: Input.Pointer) => {
@@ -46,5 +51,5 @@ export default class Monster extends GameObjects.Sprite {
 
         });
     }
-    
+
 }

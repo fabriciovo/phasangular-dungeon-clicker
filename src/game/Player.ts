@@ -15,6 +15,7 @@ export default class Player {
         this._items = items;
         this._heroes = heroes;
         EventBus.on("attack", (damage: number) => { return damage }, this);
+        EventBus.on("reward", (gold: number) => { this.SetGold(gold) }, this);
     }
 
 
@@ -25,6 +26,7 @@ export default class Player {
 
     public SetGold(_v: number): void{
         this._gold = _v;
+        console.log(this._gold);
     }
 
     public Reward(_reward:any[]):void {
