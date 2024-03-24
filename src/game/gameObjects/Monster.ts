@@ -38,6 +38,7 @@ export default class Monster extends GameObjects.Sprite {
             if(this._hp<=0){
                 this.destroy();
                 EventBus.emit("reward", 10);
+                EventBus.emit("createNewMonster");
             }
         });
 

@@ -26,12 +26,10 @@ export class Game extends Scene
         this._background = this.add.image(512, 384, 'background');
         this._background.setAlpha(0.5);
 
-
-        const monster = new Monster(this, 512, 384, 'greenSlime');
-
-        this.add.existing(monster);
-
         EventBus.emit('current-scene-ready', this);
+        EventBus.on("createNewMonster", this.createNewMonster, this)
+        this.createNewMonster();
+
     }
 
     createNewMonster() {
