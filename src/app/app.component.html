@@ -43,25 +43,28 @@
 
 <main id="app">
     <phaser-game />
-    <div>
-        <div class="spritePosition">
-            Gold:<pre>{{ spritePosition | json }}</pre>
-        </div>
-        <div class="spritePosition">
-            DPS:<pre>{{ spritePosition | json }}</pre>
-        </div>
 
-        <div>
-            <button class="button" (click)="changeScene()">Upgrades</button>
+    <div ng-if="">
+        <div class="spritePosition">
+            Gold:{{ PlayerData.GetGold() }}
+        </div>
+        <div class="spritePosition">
+            DPS:{{ PlayerData.GetDps() }}
+        </div>
+        <div class="spritePosition">
+            Click Damage:{{ PlayerData.GetClickDamage() }}
         </div>
         <div>
-            <button class="button" [disabled]="canMoveSprite" (click)="moveSprite()">Items </button>
+            <button class="button" (click)="changeScene()">Change Scene</button>
         </div>
         <div>
-            <button class="button" (click)="addSprite()">New Heroes</button>
+            <button class="button">Items </button>
         </div>
         <div>
-            <button class="button" (click)="addSprite()">Upgrade Heroes</button>
+            <button class="button" >New Heroes</button>
+        </div>
+        <div>
+            <button class="button" >Upgrade Heroes</button>
         </div>
     </div>
 </main>

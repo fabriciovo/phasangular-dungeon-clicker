@@ -21,19 +21,21 @@ export class Game extends Scene
     create ()
     {
         this._camera = this.cameras.main;
-        this._camera.setBackgroundColor(0x00ff00);
+        //this._camera.setBackgroundColor(0x00ff00);
 
-        this._background = this.add.image(512, 384, 'background');
-        this._background.setAlpha(0.5);
+        this._background = this.add.image(0, 0, 'dungeon');
+        this._background.setOrigin(0,0)
+        this._background.setScale(3.78)
 
         EventBus.emit('current-scene-ready', this);
         EventBus.on("createNewMonster", this.createNewMonster, this)
+
         this.createNewMonster();
 
     }
 
     createNewMonster() {
-        const monster = new Monster(this, 512, 384, 'greenSlime');
+        const monster = new Monster(this, 512, 384, 'slime');
         this.add.existing(monster);
     }
 }

@@ -9,10 +9,11 @@ export class Boot extends Scene
 
     preload ()
     {
-        this.load.image('background', 'assets/bg.png');
+        this.load.setPath('assets')
+        this.load.image('background', 'bg.png');
 
 
-        this.load.spritesheet('greenSlime', 'assets/green_slime.png', { frameWidth: 48, frameHeight: 48 });
+        this.load.spritesheet('slime', 'characters/slime.png', { frameWidth: 16, frameHeight: 16 });
 
     }
 
