@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class AppComponent implements AfterViewInit
 {
 
-    public PlayerData = signal<Player>(new Player("Name", 0, [], []));
+    public PlayerData: Player = new Player("Name", 0, [], []);
     
     private _openItemsPanel: boolean = false;
     private _openMenuPanel: boolean = false;

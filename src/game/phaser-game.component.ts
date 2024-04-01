@@ -20,7 +20,8 @@ export class PhaserGame implements OnInit
     {
         this.game = StartGame('game-container');
 
-        EventBus.on('current-scene-ready', (scene: Phaser.Scene) => {
+        EventBus.on('current-scene-ready', (scene: Phaser.Scene) =>
+        {
 
             this.scene = scene;
 

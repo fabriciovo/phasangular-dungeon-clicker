@@ -5,8 +5,8 @@ export default class Monster extends GameObjects.Sprite
 {
     private _texture: string | Phaser.Textures.Texture;
     private _healthbar: HealthBar;
-    private _hp = 10;
-    private _maxHp = 10;
+    private _hp = 20;
+    private _maxHp = 20;
     constructor(scene: Scene, x: number, y: number, texture: string, frame?: string | number)
     {
         super(scene, x, y, texture, frame);
@@ -15,7 +15,8 @@ export default class Monster extends GameObjects.Sprite
         this.initAnimations();
         this.mouseClick();
         this.setScale(2.78);
-        this._healthbar = new HealthBar(scene, x - 94, y + 48, this._hp, 20, this._maxHp);
+        EventBus.on("attack", this.damage, this);
+        this._healthbar = new HealthBar(scene, x - 94, y + 48, 20, this._maxHp);
     }
 
     initEvents()
@@ -34,19 +35,23 @@ export default class Monster extends GameObjects.Sprite
         this.play('idle');
     }
 
+    public damage(_damage: number): void
+    {
+        this._hp -= _damage;
+        this._healthbar.updateBar(this._hp);
+        if (this._hp <= 0)
+        {
+            this.updateMonster()
+        }
+    }
+
     mouseClick(): void
     {
         this.setInteractive({ useHandCursor: true });
+
+
         this.on('pointerdown', (pointer: Input.Pointer) =>
         {
-            this._healthbar.decrease(1);
-            this._hp--;
-            if (this._hp <= 0)
-            {
-                this.destroy();
-                EventBus.emit("reward", 10);
-                EventBus.emit("createNewMonster");
-            }
         });
 
         this.on('pointerout', (pointer: Input.Pointer) =>
@@ -62,4 +67,11 @@ export default class Monster extends GameObjects.Sprite
         });
     }
 
+    updateMonster(): void
+    {
+        EventBus.emit("reward", 10);
+        this._healthbar.updateBar(this._maxHp);
+        this._hp = this._maxHp;
+
+    }
 }
