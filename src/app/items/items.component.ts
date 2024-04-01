@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IItem } from '../../interfaces';
+import { EventBus } from '../../game/EventBus';
+
 
 @Component({
   selector: 'app-items',
@@ -7,6 +10,12 @@ import { Component } from '@angular/core';
   templateUrl: './items.component.html',
   styleUrl: './items.component.css'
 })
-export class ItemsComponent {
+export class ItemsComponent
+{
+  @Input() items: IItem[] = [];
 
+  public BuyItem(item: IItem): void
+  {
+    EventBus.emit("buyItem", item)
+  }
 }

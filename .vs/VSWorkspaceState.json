@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src",
-    "\\src\\game",
-    "\\src\\game\\gameObjects",
-    "\\src\\game\\scenes"
+    "\\src"
   ],
-  "SelectedNode": "\\src\\game\\gameObjects\\Monster.ts",
   "PreviewInSolutionExplorer": false
 }

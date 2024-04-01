@@ -52,6 +52,7 @@ export default class Monster extends GameObjects.Sprite
 
         this.on('pointerdown', (pointer: Input.Pointer) =>
         {
+            EventBus.emit("clickDamage", this);
         });
 
         this.on('pointerout', (pointer: Input.Pointer) =>

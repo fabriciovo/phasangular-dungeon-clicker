@@ -1,50 +1,7 @@
-<style>
-    #app {
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .spritePosition {
-        margin: 10px 0 0 10px;
-        font-size: 0.8em;
-    }
-
-    .button {
-        width: 140px;
-        margin: 10px;
-        padding: 10px;
-        background-color: #000000;
-        color: rgba(255, 255, 255, 0.87);
-        border: 1px solid rgba(255, 255, 255, 0.87);
-        cursor: pointer;
-        transition: all 0.3s;
-
-        &:hover {
-            border: 1px solid #0ec3c9;
-            color: #0ec3c9;
-        }
-
-        &:active {
-            background-color: #0ec3c9;
-        }
-
-        /* Disabled styles */
-        &:disabled {
-            cursor: not-allowed;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: rgba(255, 255, 255, 0.3);
-        }
-    }
-</style>
-
 <main id="app">
     <phaser-game />
 
-    <div ng-if="">
+    <div *ngIf="openMenuPanel">
         <div class="spritePosition">
             Gold:{{ PlayerData.GetGold() }}
         </div>
@@ -58,7 +15,7 @@
             <button class="button" (click)="changeScene()">Change Scene</button>
         </div>
         <div>
-            <button class="button">Items </button>
+            <button class="button" (click)="OpenItemsPanel()">Items </button>
         </div>
         <div>
             <button class="button" >New Heroes</button>
@@ -67,4 +24,10 @@
             <button class="button" >Upgrade Heroes</button>
         </div>
     </div>
+    <app-items *ngIf="openItemsPanel" [items]="PlayerData.GetItems()"></app-items>
+    
+    @if (!openMenuPanel) {
+        <button class="button" (click)="Back()">Back</button>
+      } 
+
 </main>
