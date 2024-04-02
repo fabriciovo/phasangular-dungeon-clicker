@@ -1,0 +1,29 @@
+<div style="display: flex; flex-direction: column;">
+    @for (hero of heroes; track hero.id) {
+    <button class="button" (click)="BuyItem(hero)">
+        <div style="display: flex; flex-direction: column;">
+            <span>
+                <img src="/assets/icons/coin_icon.png" [alt]="'Gold ' + hero.price" />
+            </span>
+            <label>{{ hero.name }}</label>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <p style="    
+            display: flex;
+            flex-direction:column;">
+                <span>
+                    <img src="/assets/icons/coin_icon.png" [alt]="'Gold ' + hero.price" />
+                </span>{{hero.price}}
+            </p>
+            <p style="    
+            display: flex;
+            flex-direction:column;">
+                <span>
+                    <img src="/assets/icons/dps_icon.png" [alt]="'dps ' + hero.dps" />
+                </span>{{hero.dps}}
+            </p>
+        </div>
+        <p>Level: {{hero.level}}</p>
+    </button>
+    }
+</div>

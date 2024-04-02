@@ -8,11 +8,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ItemsComponent } from './items/items.component';
 
 import Player from '../game/Player';
+import { HeroesComponent } from './heroes/heroes.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [CommonModule, RouterOutlet, PhaserGame, ReactiveFormsModule, ItemsComponent],
+    imports: [CommonModule, RouterOutlet, PhaserGame, ReactiveFormsModule, ItemsComponent, HeroesComponent],
     templateUrl: './app.component.html',
 })
 export class AppComponent implements AfterViewInit
@@ -57,18 +58,24 @@ export class AppComponent implements AfterViewInit
 
     }
 
-    public Back(): void {
+    public Back(): void
+    {
         this.openMenuPanel = true;
         this.openItemsPanel = false;
         this.openHeroesPanel = false;
-     }
+    }
 
     public OpenItemsPanel(): void
     {
         this.openItemsPanel = true;
         this.openMenuPanel = false;
         this.openHeroesPanel = false;
-
+    }
+    public OpenHeroesPanel(): void
+    {
+        this.openHeroesPanel = true;
+        this.openItemsPanel = false;
+        this.openMenuPanel = false;
     }
 
 }

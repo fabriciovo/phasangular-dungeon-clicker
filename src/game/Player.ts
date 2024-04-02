@@ -18,7 +18,7 @@ export default class Player
         this._gold = gold;
         this._clickDamage = 1;
         this._items = [{ id: "item1", name: "Angular For Beginners", clickDamage: 1, price: 20, level: 1 }];
-        this._heroes = heroes;
+        this._heroes = [{ id: "hero1", name: "Joh", dps: 1, price: 20, level: 1 }];
         EventBus.on("clickDamage", this.clickDamage, this);
         EventBus.on("buyItem", this.buyItem, this);
         EventBus.on("reward", this.SetGold, this);
@@ -64,6 +64,12 @@ export default class Player
     {
         return this._items;
     }
+
+    public GetHeroes(): any[]
+    {
+        return this._heroes;
+    }
+
 
     private clickDamage(_monster: Monster)
     {
