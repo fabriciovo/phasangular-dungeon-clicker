@@ -2,6 +2,7 @@ import { Scene, Events, Cameras, GameObjects, Time } from 'phaser';
 import Monster from '../gameObjects/Monster';
 import { EventBus } from '../EventBus';
 import Player from '../Player';
+import Hero from '../gameObjects/Hero';
 
 export class Game extends Scene
 {
@@ -13,19 +14,19 @@ export class Game extends Scene
     constructor()
     {
         super('Game');
+        this.initEvents();
     }
 
 
 
     initEvents()
     {
-
+        EventBus.on("createHero", this.createHero, this)
     }
 
     create()
     {
         EventBus.emit('current-scene-ready', this);
-        EventBus.on("createNewMonster", this.createNewMonster, this)
 
         this._camera = this.cameras.main;
 
@@ -50,5 +51,15 @@ export class Game extends Scene
     {
         const monster = new Monster(this, 512, 384, 'slime');
         this.add.existing(monster);
+    }
+    createHero(_heroName: string)
+    {
+        const x =Phaser.Math.Between(48, 480);
+        const y =Phaser.Math.Between(120, 468);
+        const hero = new Hero(this, x, y, 'slime');
+        this.add.existing(hero);
+        console.log("dasasddas")
+        console.log([x,y])
+
     }
 }

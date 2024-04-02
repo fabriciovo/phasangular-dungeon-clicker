@@ -15,12 +15,13 @@ export default class Player
     constructor(name: string, gold: number, items: any[], heroes: any[])
     {
         this._name = name;
-        this._gold = gold;
+        this._gold = 20000;
         this._clickDamage = 1;
         this._items = [{ id: "item1", name: "Angular For Beginners", clickDamage: 1, price: 20, level: 1 }];
         this._heroes = [{ id: "hero1", name: "Joh", dps: 1, price: 20, level: 1 }];
         EventBus.on("clickDamage", this.clickDamage, this);
         EventBus.on("buyItem", this.buyItem, this);
+        EventBus.on("buyHero", this.buyHero, this);
         EventBus.on("reward", this.SetGold, this);
     }
 
@@ -78,18 +79,42 @@ export default class Player
 
     private buyItem(_item: IItem): void
     {
-        if(this._gold < _item.price) {
+        if (this._gold < _item.price)
+        {
             //EventBus.emit("cantBuy")
             return;
-        }; 
+        };
         const itemIndex: number = this._items.findIndex(item => item.id === _item.id);
         const item = this._items[itemIndex];
-        
+
         this._gold -= item.price;
         this._clickDamage += item.clickDamage;
-        
+
         item.level++;
         item.clickDamage += item.level * 1.2;
         item.price *= item.level;
+    }
+
+    private buyHero(_hero: any): void
+    {
+        if (this._gold < _hero.price)
+        {
+            //EventBus.emit("cantBuy")
+            return;
+        };
+        const heroIndex: number = this._heroes.findIndex(hero => hero.id === _hero.id);
+        const hero = this._heroes[heroIndex];
+
+        this._gold -= hero.price;
+        this._dps += hero.dps;
+
+        hero.level++;
+        hero.dps *= hero.level;
+        hero.price *= hero.level;
+
+        if (hero.level === 2)
+        {
+            EventBus.emit("createHero", hero.name);
+        }
     }
 }

@@ -13,6 +13,6 @@ export class HeroesComponent {
 
   public BuyItem(hero: any): void
   {
-    EventBus.emit("buyItem", hero)
+    EventBus.emit("buyHero", hero)
   }
 }
