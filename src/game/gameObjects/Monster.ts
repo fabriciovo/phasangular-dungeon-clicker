@@ -38,10 +38,12 @@ export default class Monster extends GameObjects.Sprite
     public damage(_damage: number): void
     {
         this._hp -= _damage;
-        this._healthbar.updateBar(this._hp);
         if (this._hp <= 0)
         {
             this.updateMonster()
+        }else{
+            this._healthbar.updateBar(this._hp);
+
         }
     }
 
@@ -71,8 +73,9 @@ export default class Monster extends GameObjects.Sprite
     updateMonster(): void
     {
         EventBus.emit("reward", 10);
-        this._healthbar.updateBar(this._maxHp);
         this._hp = this._maxHp;
+        this._healthbar.updateBar(this._maxHp);
+        console.log([this._hp, this._maxHp])
 
     }
 }

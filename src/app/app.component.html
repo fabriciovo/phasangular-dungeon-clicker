@@ -1,7 +1,8 @@
 <main id="app">
     <phaser-game />
 
-    <div *ngIf="openMenuPanel">
+    <div>
+    <div>
         <div class="spritePosition">
             Gold:{{ PlayerData.GetGold() }}
         </div>
@@ -11,6 +12,10 @@
         <div class="spritePosition">
             Click Damage:{{ PlayerData.GetClickDamage() }}
         </div>
+    </div>
+
+    <div *ngIf="openMenuPanel">
+
         <div>
             <button class="button" (click)="changeScene()">Change Scene</button>
         </div>
@@ -18,16 +23,17 @@
             <button class="button" (click)="OpenItemsPanel()">Items </button>
         </div>
         <div>
-            <button class="button" >New Heroes</button>
+            <button class="button">New Heroes</button>
         </div>
         <div>
-            <button class="button" >Upgrade Heroes</button>
+            <button class="button">Upgrade Heroes</button>
         </div>
     </div>
     <app-items *ngIf="openItemsPanel" [items]="PlayerData.GetItems()"></app-items>
-    
+
     @if (!openMenuPanel) {
-        <button class="button" (click)="Back()">Back</button>
-      } 
+    <button class="button" (click)="Back()">Back</button>
+    }
+    </div>
 
 </main>

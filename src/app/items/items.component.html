@@ -1,6 +1,6 @@
 <div style="display: flex; flex-direction: column;">
     @for (item of items; track item.id) {
-    <button class="button">
+    <button class="button" (click)="BuyItem(item)">
         <label>{{ item.name }}</label>
         <div style="display: flex; justify-content: space-between;">
             <p style="    
@@ -14,8 +14,8 @@
             display: flex;
             flex-direction:column;">
                 <span>
-                    <img src="/assets/icons/dps_icon.png" [alt]="'DPS ' + item.dps" />
-                </span>{{item.dps}}
+                    <img src="/assets/icons/dps_icon.png" [alt]="'clickDamage ' + item.clickDamage" />
+                </span>{{item.clickDamage}}
             </p>
         </div>
         <p>Level: {{item.level}}</p>
