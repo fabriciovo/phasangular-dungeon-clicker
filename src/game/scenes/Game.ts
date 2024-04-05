@@ -8,8 +8,8 @@ export class Game extends Scene
 {
     private _camera: Cameras.Scene2D.Camera;
     private _background: GameObjects.Image;
-    private _player: Player = new Player("", 0, [], []);
     private _dpsTimer: Time.TimerEvent;
+    public _player: Player;
 
     constructor()
     {
@@ -43,8 +43,10 @@ export class Game extends Scene
 
     emitPlayerAttack(): void
     {
-        EventBus.emit("attack", this._player.GetDps());
         this.time.addEvent(this._dpsTimer);
+        if(!this._player) return;
+        console.log("sadasd")
+        EventBus.emit("attack", this._player.GetDps());
     }
 
     createNewMonster()
@@ -54,8 +56,8 @@ export class Game extends Scene
     }
     createHero(_heroName: string)
     {
-        const x =Phaser.Math.Between(48, 480);
-        const y =Phaser.Math.Between(120, 468);
+        const x = Phaser.Math.Between(48, 480);
+        const y = Phaser.Math.Between(120, 468);
         const hero = new Hero(this, x, y, 'slime');
         this.add.existing(hero);
         console.log("dasasddas")

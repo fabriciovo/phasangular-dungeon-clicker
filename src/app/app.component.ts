@@ -9,6 +9,7 @@ import { ItemsComponent } from './items/items.component';
 
 import Player from '../game/Player';
 import { HeroesComponent } from './heroes/heroes.component';
+import { Game } from '../game/scenes/Game';
 
 @Component({
     selector: 'app-root',
@@ -32,7 +33,13 @@ export class AppComponent implements AfterViewInit
     {
         EventBus.on('current-scene-ready', (scene: Phaser.Scene) =>
         {
-            console.log(this.phaserRef.scene)
+            if (this.phaserRef.scene.scene.key === "Game")
+            {
+                const scene = this.phaserRef.scene as Game;
+                scene._player = this.PlayerData;
+
+            }
+            console.log(this.phaserRef.scene.scene.key)
 
         });
 
@@ -52,8 +59,7 @@ export class AppComponent implements AfterViewInit
 
             const scene = this.phaserRef.scene as MainMenu;
             scene.changeScene();
-            // if this.phaserRef.scene.scene.key
-            console.log(this.phaserRef.scene.scene.key)
+
         }
 
     }
