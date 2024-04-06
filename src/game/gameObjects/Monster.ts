@@ -8,15 +8,10 @@ export default class Monster extends GameObjects.Sprite
     private _hp = 20;
     private _maxHp = 20;
 
-    private _scene: Scene;
-    private _x: number;
-    private _y: number;
     constructor(scene: Scene, x: number, y: number, texture: string, frame?: string | number)
     {
         super(scene, x, y, texture, frame);
-        this._scene = scene;
-        this._x = x;
-        this._y = y;
+
         this._texture = texture;
 
         this.initAnimations();
@@ -80,6 +75,6 @@ export default class Monster extends GameObjects.Sprite
         EventBus.emit("reward", 10);
         this._maxHp = this._maxHp * 2;
         this._hp = this._maxHp;
-        this._healthbar = new HealthBar(this._scene, this._x - 94, this._y + 48, 20, this._maxHp, 100);
+        this._healthbar.Reset(this._maxHp);
     }
 }

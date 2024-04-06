@@ -1,4 +1,4 @@
-import { Scene } from "phaser";
+import { GameObjects, Scene, } from "phaser";
 
 export default class HealthBar
 {
@@ -20,12 +20,6 @@ export default class HealthBar
         this._maxValue = maxValue;
         this._barWidth = barWidth;
 
-        this.InitBar(this._maxValue);
-
-    }
-
-    public InitBar(maxValue: number): void
-    {
         this._backgroundBar = this._scene.add.graphics();
         this.drawBackgroundBar();
 
@@ -34,8 +28,16 @@ export default class HealthBar
         this.updateBar(maxValue);
     }
 
+    public Reset(newMaxValue: number): void {
+        this._maxValue = newMaxValue;
+        this.drawBackgroundBar();
+        this.updateBar(this._maxValue);
+    }
+
+
     private drawBackgroundBar(): void
     {
+        this._backgroundBar.clear();
         this._backgroundBar.fillStyle(0x000000, 0.2);
         this._backgroundBar.fillRect(this._x, this._y, this._barWidth, this._height);
     }
