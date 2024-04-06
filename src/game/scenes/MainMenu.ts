@@ -1,4 +1,4 @@
-import { GameObjects, Scene } from 'phaser';
+import { GameObjects, Input, Scene } from 'phaser';
 
 import { EventBus } from '../EventBus';
 
@@ -9,12 +9,12 @@ export class MainMenu extends Scene
     title: GameObjects.Text;
     logoTween: Phaser.Tweens.Tween | null;
 
-    constructor ()
+    constructor()
     {
         super('MainMenu');
     }
 
-    create ()
+    create()
     {
         this.background = this.add.image(512, 384, 'background');
 
@@ -26,10 +26,20 @@ export class MainMenu extends Scene
             align: 'center'
         }).setOrigin(0.5).setDepth(100);
 
+
+        this.logo.setInteractive({ useHandCursor: true });
+
+        this.logo.on('pointerdown', (pointer: Input.Pointer) =>
+        {
+            this.changeScene();
+        });
+
+
+
         EventBus.emit('current-scene-ready', this);
     }
-    
-    changeScene ()
+
+    changeScene()
     {
         if (this.logoTween)
         {
@@ -40,7 +50,7 @@ export class MainMenu extends Scene
         this.scene.start('Game');
     }
 
-    moveLogo (vueCallback: ({ x, y }: { x: number, y: number }) => void)
+    moveLogo(vueCallback: ({ x, y }: { x: number, y: number }) => void)
     {
         if (this.logoTween)
         {
@@ -52,7 +62,7 @@ export class MainMenu extends Scene
             {
                 this.logoTween.play();
             }
-        } 
+        }
         else
         {
             this.logoTween = this.tweens.add({
@@ -61,7 +71,8 @@ export class MainMenu extends Scene
                 y: { value: 80, duration: 1500, ease: 'Sine.easeOut' },
                 yoyo: true,
                 repeat: -1,
-                onUpdate: () => {
+                onUpdate: () =>
+                {
                     if (vueCallback)
                     {
                         vueCallback({

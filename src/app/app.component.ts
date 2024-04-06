@@ -10,11 +10,12 @@ import { ItemsComponent } from './items/items.component';
 import Player from '../game/Player';
 import { HeroesComponent } from './heroes/heroes.component';
 import { Game } from '../game/scenes/Game';
+import { UpgradesComponent } from './upgrades/upgrades.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [CommonModule, RouterOutlet, PhaserGame, ReactiveFormsModule, ItemsComponent, HeroesComponent],
+    imports: [CommonModule, RouterOutlet, PhaserGame, ReactiveFormsModule, ItemsComponent, HeroesComponent, UpgradesComponent],
     templateUrl: './app.component.html',
 })
 export class AppComponent implements AfterViewInit
@@ -22,9 +23,10 @@ export class AppComponent implements AfterViewInit
 
     public PlayerData: Player = new Player("Name", 0, [], []);
 
+    public openMenuPanel: boolean = true;
     public openItemsPanel: boolean = false;
     public openHeroesPanel: boolean = false;
-    public openMenuPanel: boolean = true;
+    public openUpgradePanel: boolean = false;
 
 
     @ViewChild(PhaserGame) phaserRef!: PhaserGame;
@@ -33,16 +35,12 @@ export class AppComponent implements AfterViewInit
     {
         EventBus.on('current-scene-ready', (scene: Phaser.Scene) =>
         {
-            if (this.phaserRef.scene.scene.key === "Game")
+            if (scene.scene.key === "Game")
             {
                 const scene = this.phaserRef.scene as Game;
                 scene._player = this.PlayerData;
-
             }
-            console.log(this.phaserRef.scene.scene.key)
-
         });
-
     }
 
     ngOnInit()
@@ -51,24 +49,12 @@ export class AppComponent implements AfterViewInit
         // .then(data =>data)
     }
 
-    public changeScene()
-    {
-
-        if (this.phaserRef.scene)
-        {
-
-            const scene = this.phaserRef.scene as MainMenu;
-            scene.changeScene();
-
-        }
-
-    }
-
     public Back(): void
     {
         this.openMenuPanel = true;
         this.openItemsPanel = false;
         this.openHeroesPanel = false;
+        this.openUpgradePanel = false;
     }
 
     public OpenItemsPanel(): void
@@ -76,12 +62,22 @@ export class AppComponent implements AfterViewInit
         this.openItemsPanel = true;
         this.openMenuPanel = false;
         this.openHeroesPanel = false;
+        this.openUpgradePanel = false;
+
     }
     public OpenHeroesPanel(): void
     {
         this.openHeroesPanel = true;
         this.openItemsPanel = false;
         this.openMenuPanel = false;
-    }
+        this.openUpgradePanel = false;
 
+    }
+    public OpenUpgradesPanel(): void
+    {
+        this.openUpgradePanel = true;
+        this.openHeroesPanel = false;
+        this.openItemsPanel = false;
+        this.openMenuPanel = false;
+    }
 }

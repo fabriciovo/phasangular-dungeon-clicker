@@ -7,16 +7,23 @@ export default class Monster extends GameObjects.Sprite
     private _healthbar: HealthBar;
     private _hp = 20;
     private _maxHp = 20;
+
+    private _scene: Scene;
+    private _x: number;
+    private _y: number;
     constructor(scene: Scene, x: number, y: number, texture: string, frame?: string | number)
     {
         super(scene, x, y, texture, frame);
+        this._scene = scene;
+        this._x = x;
+        this._y = y;
         this._texture = texture;
 
         this.initAnimations();
         this.mouseClick();
         this.setScale(2.78);
         EventBus.on("attack", this.damage, this);
-        this._healthbar = new HealthBar(scene, x - 94, y + 48, 20, this._maxHp);
+        this._healthbar = new HealthBar(scene, x - 94, y + 48, 20, this._maxHp, 100);
     }
 
     initEvents()
@@ -41,7 +48,8 @@ export default class Monster extends GameObjects.Sprite
         if (this._hp <= 0)
         {
             this.updateMonster()
-        }else{
+        } else
+        {
             this._healthbar.updateBar(this._hp);
 
         }
@@ -51,7 +59,6 @@ export default class Monster extends GameObjects.Sprite
     {
         this.setInteractive({ useHandCursor: true });
 
-
         this.on('pointerdown', (pointer: Input.Pointer) =>
         {
             EventBus.emit("clickDamage", this);
@@ -60,22 +67,19 @@ export default class Monster extends GameObjects.Sprite
         this.on('pointerout', (pointer: Input.Pointer) =>
         {
             this.clearTint();
-
         });
 
         this.on('pointerup', (pointer: Input.Pointer) =>
         {
             this.clearTint();
-
         });
     }
 
     updateMonster(): void
     {
         EventBus.emit("reward", 10);
+        this._maxHp = this._maxHp * 2;
         this._hp = this._maxHp;
-        this._healthbar.updateBar(this._maxHp);
-        console.log([this._hp, this._maxHp])
-
+        this._healthbar = new HealthBar(this._scene, this._x - 94, this._y + 48, 20, this._maxHp, 100);
     }
 }
