@@ -2,14 +2,7 @@ import Monster from "@gameObjects/Monster";
 import { EventBus } from "./EventBus";
 import { IItem, IUpgrade, IPlayerData } from "@interfaces";
 
-const ITEMS_DATA: IItem[] = [{
-    id: "sword", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
-        id: "sword",
-        mult: 0.32,
-        price: 1,
-        level: 1,
-    }
-}]
+
 
 export default class Player
 {
@@ -26,8 +19,8 @@ export default class Player
         this._gold = gold;
         this._clickDamage = clickDamage;
         this._dps = dps;
-        this._items = items || ITEMS_DATA;
-        this._heroes = [{ id: "hero1", name: "Joh", dps: 1, price: 20, level: 1 }];
+        this._items = items;
+        this._heroes = heroes;
 
         this.initEvents();
     }
@@ -93,13 +86,16 @@ export default class Player
         return this._name;
     }
 
-    public PlayerLoadData(playerData: IPlayerData): void
+    public PlayerLoadData(playerData: string): void
     {
-        this._name = playerData.name;
-        this._gold = playerData.gold;
-        this._clickDamage = playerData.clickDamage;
-        this._items = playerData.items;
-        this._heroes = playerData.heroes;
+        const _playerData = JSON.parse(playerData);
+        console.log(_playerData);
+        this._name = _playerData._name;
+        this._gold = _playerData._gold;
+        this._clickDamage = _playerData._clickDamage;
+        this._items = _playerData._items;
+        this._heroes = _playerData._heroes;
+
     }
 
     private buyItem(_item: IItem): void

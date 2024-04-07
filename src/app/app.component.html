@@ -2,6 +2,7 @@
     <phaser-game />
 
     <div>
+        @if(PlayerData){
         <div>
             <label>{{ PlayerData.GetName() }}</label>
             <div class="spritePosition">
@@ -14,7 +15,6 @@
                 Click Damage:{{ PlayerData.GetClickDamage() }}
             </div>
         </div>
-
         <div *ngIf="openMenuPanel">
             <div>
                 <button class="button" (click)="OpenItemsPanel()">Items </button>
@@ -43,7 +43,7 @@
         @if (!openMenuPanel) {
         <button class="button" (click)="Back()">Back</button>
         }
-
+        }
 
     </div>
 

@@ -12,6 +12,7 @@ import { HeroesComponent } from '@components/heroes/heroes.component';
 import { UpgradesComponent } from '@components/upgrades/upgrades.component';
 import LocalService from 'src/utils/localService';
 import { IPlayerData } from '@interfaces';
+import { START_HEROES_DATA, START_ITEMS_DATA } from 'src/utils/genericData';
 
 @Component({
     selector: 'app-root',
@@ -22,7 +23,7 @@ import { IPlayerData } from '@interfaces';
 export class AppComponent implements AfterViewInit
 {
 
-    public PlayerData: Player = new Player("Name", 0, [], [], 0, 1);
+    public PlayerData: Player;
 
     public openMenuPanel: boolean = true;
     public openItemsPanel: boolean = false;
@@ -39,12 +40,21 @@ export class AppComponent implements AfterViewInit
         {
             if (scene.scene.key === "Game")
             {
-                const playerData = this._localService.getData("playerData") as IPlayerData;
+                const playerData = this._localService.getData("playerData");
                 if (playerData)
                 {
-                    this.PlayerData.PlayerLoadData(playerData);
+                    const _playerData = JSON.parse(playerData);
+                    const name = _playerData._name;
+                    const gold = _playerData._gold;
+                    const clickDamage = _playerData._clickDamage;
+                    const items = _playerData._items;
+                    const heroes = _playerData._heroes;
+                    const dps = _playerData._dps;
+
+                    this.PlayerData = new Player(name, gold, items, heroes, dps, clickDamage)
                 } else
                 {
+                    this.PlayerData = new Player("Name", 0, START_ITEMS_DATA, START_HEROES_DATA, 0, 1);
                     const scene = this.phaserRef.scene as Game;
                     scene._player = this.PlayerData;
                     this._localService.saveData("playerData", JSON.stringify(this.PlayerData));
