@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { EventBus } from '../../game/EventBus';
+import { EventBus } from '../../../game/EventBus';
 
 @Component({
   selector: 'app-heroes',

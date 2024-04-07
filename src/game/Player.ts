@@ -1,6 +1,6 @@
 import Monster from "@gameObjects/Monster";
-import { IItem } from "../interfaces";
 import { EventBus } from "./EventBus";
+import { IItem, IUpgrade } from "@interfaces";
 
 const ITEMS_DATA = [{
     id: "sword", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
@@ -36,6 +36,7 @@ export default class Player
         EventBus.on("clickDamage", this.clickDamage, this);
         EventBus.on("buyItem", this.buyItem, this);
         EventBus.on("buyHero", this.buyHero, this);
+        EventBus.on("buyUpgrade", this.buyUpgrade, this);
         EventBus.on("reward", this.SetGold, this);
     }
 
@@ -135,5 +136,14 @@ export default class Player
         {
             EventBus.emit("createHero", hero.name);
         }
+    }
+
+    private buyUpgrade(_upgrade: IUpgrade): void
+    {
+        if (this._gold < _upgrade.price)
+        {
+            //EventBus.emit("cantBuy")
+            return;
+        };
     }
 }

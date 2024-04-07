@@ -1,16 +1,15 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PhaserGame } from '../game/phaser-game.component';
-import { MainMenu } from '../game/scenes/MainMenu';
 import { CommonModule } from '@angular/common';
-import { EventBus } from '../game/EventBus';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ItemsComponent } from './items/items.component';
 
-import Player from '../game/Player';
-import { HeroesComponent } from './heroes/heroes.component';
-import { Game } from '../game/scenes/Game';
-import { UpgradesComponent } from './upgrades/upgrades.component';
+import { Game } from '@scenes/Game';
+import Player from '@game/Player';
+import { PhaserGame } from '@game/phaser-game.component';
+import { EventBus } from '@game/EventBus';
+import { ItemsComponent } from '@components/items/items.component';
+import { HeroesComponent } from '@components/heroes/heroes.component';
+import { UpgradesComponent } from '@components/upgrades/upgrades.component';
 
 @Component({
     selector: 'app-root',

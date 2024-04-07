@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IItem } from '../../interfaces';
-import { EventBus } from '../../game/EventBus';
+import { IItem } from '../../../interfaces';
+import { EventBus } from '../../../game/EventBus';
 
 
 @Component({

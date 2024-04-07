@@ -1,5 +1,5 @@
 import { GameObjects, Scene, Input } from 'phaser';
-import HealthBar from '../components/Healthbar';
+import HealthBar from '../gameComponents/Healthbar';
 import { EventBus } from '../EventBus';
 export default class Monster extends GameObjects.Sprite
 {

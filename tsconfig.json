@@ -29,6 +29,9 @@
       "@app/*": [
         "./src/app/*"
       ],
+      "@components/*": [
+        "./src/app/components/*"
+      ],
       "@scenes/*": [
         "./src/game/scenes/*"
       ],
@@ -38,8 +41,11 @@
       "@gameComponents/*": [
         "./src/game/gameComponents/*"
       ],
-      "@intefaces/*": [
-        "./src/intefaces.ts*"
+      "@game/*": [
+        "./src/game/*"
+      ],
+      "@interfaces": [
+        "./src/interfaces.ts"
       ],
     },
   },
