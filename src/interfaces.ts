@@ -1,3 +1,10 @@
+
+export interface IUpgrade {
+  mult: number;
+  price: number;
+  level: number;
+}
+
 export interface IItem
 {
   id: string;
@@ -5,4 +12,7 @@ export interface IItem
   price: number;
   clickDamage: number;
   level: number;
+  upgrade: IUpgrade;
+  priceMult: number;
 }
+

@@ -3,6 +3,7 @@
 
     <div>
         <div>
+            <label>{{ PlayerData.GetName() }}</label>
             <div class="spritePosition">
                 Gold:{{ PlayerData.GetGold() }}
             </div>
@@ -36,7 +37,7 @@
         }
 
         @if(openUpgradePanel){
-            <app-upgrades></app-upgrades>
+        <app-upgrades></app-upgrades>
         }
 
         @if (!openMenuPanel) {

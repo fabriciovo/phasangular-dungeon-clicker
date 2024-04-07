@@ -23,12 +23,30 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": [
+        "./src/app/*"
+      ],
+      "@scenes/*": [
+        "./src/game/scenes/*"
+      ],
+      "@gameObjects/*": [
+        "./src/game/gameObjects/*"
+      ],
+      "@gameComponents/*": [
+        "./src/game/gameComponents/*"
+      ],
+      "@intefaces/*": [
+        "./src/intefaces.ts*"
+      ],
+    },
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
 }

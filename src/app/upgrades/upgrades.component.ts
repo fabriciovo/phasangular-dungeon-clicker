@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { EventBus } from '../../game/EventBus';
+import { IUpgrade } from 'src/interfaces';
 
 @Component({
   selector: 'app-upgrades',
@@ -7,6 +9,12 @@ import { Component } from '@angular/core';
   templateUrl: './upgrades.component.html',
   styleUrl: './upgrades.component.css'
 })
-export class UpgradesComponent {
+export class UpgradesComponent
+{
+  @Input() upgrades: IUpgrade[] = [];
 
+  public BuyUpgrage(upgrage: IUpgrade): void
+  {
+    EventBus.emit("buyUpgrage", upgrage)
+  }
 }

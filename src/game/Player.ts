@@ -1,7 +1,14 @@
+import Monster from "@gameObjects/Monster";
 import { IItem } from "../interfaces";
 import { EventBus } from "./EventBus";
-import Monster from "./gameObjects/Monster";
 
+const ITEMS_DATA = [{
+    id: "sword", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
+        mult: 0.32,
+        price: 1,
+        level: 1,
+    }
+}]
 
 export default class Player
 {
@@ -12,13 +19,20 @@ export default class Player
     private _dps: number = 2.4;
     private _clickDamage: number = 1;
 
-    constructor(name: string, gold: number, items: any[], heroes: any[])
+    constructor(name: string, gold: number, items?: IItem[], heroes?: any[])
     {
         this._name = name;
         this._gold = 20000;
         this._clickDamage = 1;
-        this._items = [{ id: "item1", name: "Angular For Beginners", clickDamage: 1, price: 20, level: 1 }];
+        this._items = items || ITEMS_DATA;
         this._heroes = [{ id: "hero1", name: "Joh", dps: 1, price: 20, level: 1 }];
+
+
+        this.initEvents();
+    }
+
+    private initEvents(): void
+    {
         EventBus.on("clickDamage", this.clickDamage, this);
         EventBus.on("buyItem", this.buyItem, this);
         EventBus.on("buyHero", this.buyHero, this);
@@ -71,8 +85,13 @@ export default class Player
         return this._heroes;
     }
 
+    public GetName(): string
+    {
+        return this._name;
+    }
 
-    private clickDamage(_monster: Monster)
+
+    private clickDamage(_monster: Monster): void
     {
         _monster.damage(this._clickDamage);
     }
