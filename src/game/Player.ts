@@ -2,8 +2,9 @@ import Monster from "@gameObjects/Monster";
 import { EventBus } from "./EventBus";
 import { IItem, IUpgrade } from "@interfaces";
 
-const ITEMS_DATA = [{
+const ITEMS_DATA: IItem[] = [{
     id: "sword", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
+        id: "sword",
         mult: 0.32,
         price: 1,
         level: 1,
@@ -145,5 +146,12 @@ export default class Player
             //EventBus.emit("cantBuy")
             return;
         };
+        const upgradeIndex: number = this._items.findIndex(item => item.upgrade.id === _upgrade.id);
+        const upgrade = this._items[upgradeIndex];
+
+        this._gold -= upgrade.price;
+
+        upgrade.level++;
+        upgrade.price *= upgrade.level;
     }
 }

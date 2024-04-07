@@ -10,6 +10,7 @@ import { EventBus } from '@game/EventBus';
 import { ItemsComponent } from '@components/items/items.component';
 import { HeroesComponent } from '@components/heroes/heroes.component';
 import { UpgradesComponent } from '@components/upgrades/upgrades.component';
+import LocalService from 'src/utils/localService';
 
 @Component({
     selector: 'app-root',
@@ -27,6 +28,7 @@ export class AppComponent implements AfterViewInit
     public openHeroesPanel: boolean = false;
     public openUpgradePanel: boolean = false;
 
+    private _localService: LocalService = new LocalService();
 
     @ViewChild(PhaserGame) phaserRef!: PhaserGame;
 
@@ -38,6 +40,7 @@ export class AppComponent implements AfterViewInit
             {
                 const scene = this.phaserRef.scene as Game;
                 scene._player = this.PlayerData;
+                this._localService.saveData("playerData", JSON.stringify(this.PlayerData));
             }
         });
     }

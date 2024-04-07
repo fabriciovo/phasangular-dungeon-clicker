@@ -1,5 +1,7 @@
 
-export interface IUpgrade {
+export interface IUpgrade
+{
+  id: string;
   mult: number;
   price: number;
   level: number;
