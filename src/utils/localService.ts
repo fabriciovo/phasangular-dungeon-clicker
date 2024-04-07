@@ -12,7 +12,7 @@ class LocalService
     console.log(value)
     localStorage.setItem(key, value);
   }
-  public getData(key: string)
+  public getData(key: string): any
   {
     return localStorage.getItem(key)
   }

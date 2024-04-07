@@ -11,6 +11,7 @@ import { ItemsComponent } from '@components/items/items.component';
 import { HeroesComponent } from '@components/heroes/heroes.component';
 import { UpgradesComponent } from '@components/upgrades/upgrades.component';
 import LocalService from 'src/utils/localService';
+import { IPlayerData } from '@interfaces';
 
 @Component({
     selector: 'app-root',
@@ -21,7 +22,7 @@ import LocalService from 'src/utils/localService';
 export class AppComponent implements AfterViewInit
 {
 
-    public PlayerData: Player = new Player("Name", 0, [], []);
+    public PlayerData: Player = new Player("Name", 0, [], [], 0, 1);
 
     public openMenuPanel: boolean = true;
     public openItemsPanel: boolean = false;
@@ -38,9 +39,16 @@ export class AppComponent implements AfterViewInit
         {
             if (scene.scene.key === "Game")
             {
-                const scene = this.phaserRef.scene as Game;
-                scene._player = this.PlayerData;
-                this._localService.saveData("playerData", JSON.stringify(this.PlayerData));
+                const playerData = this._localService.getData("playerData") as IPlayerData;
+                if (playerData)
+                {
+                    this.PlayerData.PlayerLoadData(playerData);
+                } else
+                {
+                    const scene = this.phaserRef.scene as Game;
+                    scene._player = this.PlayerData;
+                    this._localService.saveData("playerData", JSON.stringify(this.PlayerData));
+                }
             }
         });
     }

@@ -18,3 +18,11 @@ export interface IItem
   priceMult: number;
 }
 
+export interface IPlayerData {
+  name: string;
+  gold: number;
+  items: IItem[];
+  heroes: any[];
+  dps: number;
+  clickDamage: number;
+}

@@ -1,6 +1,6 @@
 import Monster from "@gameObjects/Monster";
 import { EventBus } from "./EventBus";
-import { IItem, IUpgrade } from "@interfaces";
+import { IItem, IUpgrade, IPlayerData } from "@interfaces";
 
 const ITEMS_DATA: IItem[] = [{
     id: "sword", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
@@ -20,21 +20,22 @@ export default class Player
     private _dps: number = 2.4;
     private _clickDamage: number = 1;
 
-    constructor(name: string, gold: number, items?: IItem[], heroes?: any[])
+    constructor(name: string, gold: number, items: IItem[], heroes: any[], dps: number, clickDamage: number)
     {
         this._name = name;
-        this._gold = 20000;
-        this._clickDamage = 1;
+        this._gold = gold;
+        this._clickDamage = clickDamage;
+        this._dps = dps;
         this._items = items || ITEMS_DATA;
         this._heroes = [{ id: "hero1", name: "Joh", dps: 1, price: 20, level: 1 }];
-
 
         this.initEvents();
     }
 
+
     private initEvents(): void
     {
-        EventBus.on("clickDamage", this.clickDamage, this);
+        EventBus.on("clickDamage", this.clickDamageEvent, this);
         EventBus.on("buyItem", this.buyItem, this);
         EventBus.on("buyHero", this.buyHero, this);
         EventBus.on("buyUpgrade", this.buyUpgrade, this);
@@ -92,10 +93,13 @@ export default class Player
         return this._name;
     }
 
-
-    private clickDamage(_monster: Monster): void
+    public PlayerLoadData(playerData: IPlayerData): void
     {
-        _monster.damage(this._clickDamage);
+        this._name = playerData.name;
+        this._gold = playerData.gold;
+        this._clickDamage = playerData.clickDamage;
+        this._items = playerData.items;
+        this._heroes = playerData.heroes;
     }
 
     private buyItem(_item: IItem): void
@@ -152,6 +156,12 @@ export default class Player
         this._gold -= upgrade.price;
 
         upgrade.level++;
+
         upgrade.price *= upgrade.level;
+    }
+
+    private clickDamageEvent(_monster: Monster): void
+    {
+        _monster.damage(this._clickDamage);
     }
 }
