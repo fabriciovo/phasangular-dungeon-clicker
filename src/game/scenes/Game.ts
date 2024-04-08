@@ -17,8 +17,6 @@ export class Game extends Scene
         this.initEvents();
     }
 
-
-
     initEvents()
     {
         EventBus.on("createHero", this.createHero, this)
@@ -31,10 +29,8 @@ export class Game extends Scene
         this._camera = this.cameras.main;
 
         this._background = this.add.image(0, 0, 'dungeon');
-        this._background.setOrigin(0, 0)
-        this._background.setScale(3.78)
-
-
+        this._background.setOrigin(0, 0);
+        this._background.setScale(3.78);
 
         this.createNewMonster();
 
@@ -44,8 +40,7 @@ export class Game extends Scene
     emitPlayerAttack(): void
     {
         this.time.addEvent(this._dpsTimer);
-        if(!this._player) return;
-        console.log("sadasd")
+        if (!this._player) return;
         EventBus.emit("attack", this._player.GetDps());
     }
 
@@ -60,8 +55,5 @@ export class Game extends Scene
         const y = Phaser.Math.Between(120, 468);
         const hero = new Hero(this, x, y, 'slime');
         this.add.existing(hero);
-        console.log("dasasddas")
-        console.log([x,y])
-
     }
 }

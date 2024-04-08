@@ -1,18 +1,35 @@
 import { GameObjects, Scene, Input } from 'phaser';
 import HealthBar from '../gameComponents/Healthbar';
 import { EventBus } from '../EventBus';
+import ShakePosition from 'phaser3-rex-plugins/plugins/behaviors/shake/ShakePosition';
 export default class Monster extends GameObjects.Sprite
 {
     private _texture: string | Phaser.Textures.Texture;
     private _healthbar: HealthBar;
     private _hp = 20;
     private _maxHp = 20;
+    private _xOrigin:number;
+    private _yOrigin:number;
+    private _scene: Scene;
+    private _shakeEffect: ShakePosition;
+
 
     constructor(scene: Scene, x: number, y: number, texture: string, frame?: string | number)
     {
         super(scene, x, y, texture, frame);
-
+        this._scene = scene;
         this._texture = texture;
+        this._xOrigin = x;
+        this._yOrigin = y;
+
+
+        this._shakeEffect = new ShakePosition(this, {
+            mode: 1, 
+            duration: 100,
+            magnitude: 10,
+            magnitudeMode: 1,
+            axis: 0,
+        });
 
         this.initAnimations();
         this.mouseClick();
@@ -56,6 +73,7 @@ export default class Monster extends GameObjects.Sprite
 
         this.on('pointerdown', (pointer: Input.Pointer) =>
         {
+            this._shakeEffect.shake();
             EventBus.emit("clickDamage", this);
         });
 
@@ -72,9 +90,12 @@ export default class Monster extends GameObjects.Sprite
 
     updateMonster(): void
     {
+
         EventBus.emit("reward", 10);
+        this._shakeEffect.stop();
         this._maxHp = this._maxHp * 2;
         this._hp = this._maxHp;
+        this.setPosition(this._xOrigin,this._yOrigin);
         this._healthbar.Reset(this._maxHp);
     }
 }

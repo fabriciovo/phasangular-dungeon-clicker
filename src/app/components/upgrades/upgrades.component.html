@@ -1,1 +1,29 @@
-<p>upgrades works!</p>
+<div style="display: flex; flex-direction: column;">
+    @for (item of itemList; track item.id) {
+    <button type="button" class="button" (click)="BuyUpgrage(item.upgrade)">
+        <div style="display: flex; flex-direction: column;">
+            <span>
+                <img src="/assets/icons/coin_icon.png" [alt]="'Gold ' + item.upgrade" />
+            </span>
+            <label>{{ item.name }} Upgrade</label>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <p style="    
+            display: flex;
+            flex-direction:column;">
+                <span>
+                    <img src="/assets/icons/coin_icon.png" [alt]="'Gold ' + item.upgrade.price" />
+                </span>{{item.upgrade.price}}
+            </p>
+            <p style="
+            display: flex;
+            flex-direction:column;">
+                <span>
+                    <img src="/assets/icons/dps_icon.png" />
+                </span>teste
+            </p>
+        </div>
+        <p>Level: {{item.upgrade.level}}</p>
+    </button>
+    }
+</div>

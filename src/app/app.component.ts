@@ -53,6 +53,10 @@ export class AppComponent implements AfterViewInit
                     const dps = _playerData._dps;
 
                     this.PlayerData = new Player(name, gold, items, heroes, dps, clickDamage)
+
+                    const scene = this.phaserRef.scene as Game;
+                    scene._player = this.PlayerData;
+
                 } else
                 {
                     const inputYourName = prompt('Input Your Name:');
