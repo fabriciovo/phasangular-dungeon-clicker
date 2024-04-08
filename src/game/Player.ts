@@ -20,6 +20,7 @@ export default class Player
         this._clickDamage = clickDamage;
         this._dps = dps;
         this._items = items;
+        console.log(this._items)
         this._heroes = heroes;
 
         this.initEvents();

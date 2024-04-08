@@ -11,7 +11,6 @@ import { ItemsComponent } from '@components/items/items.component';
 import { HeroesComponent } from '@components/heroes/heroes.component';
 import { UpgradesComponent } from '@components/upgrades/upgrades.component';
 import LocalService from 'src/utils/localService';
-import { IPlayerData } from '@interfaces';
 import { START_HEROES_DATA, START_ITEMS_DATA } from 'src/utils/genericData';
 import { CreateNameComponent } from './components/create-name/create-name.component';
 

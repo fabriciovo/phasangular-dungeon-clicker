@@ -1,4 +1,5 @@
-<div style="display: flex; flex-direction: column;">
+<div
+    style="display: flex; flex-direction: column; overflow: scroll; overflow-x: hidden; height: 300px; margin:8px; border: solid 1px white;">
     @for (item of items; track item.id) {
     <button class="button" (click)="BuyItem(item)">
         <label>{{ item.name }}</label>
