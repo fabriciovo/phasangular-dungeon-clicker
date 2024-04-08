@@ -1,17 +1,16 @@
 <main id="app">
     <phaser-game />
-
     <div>
         @if(PlayerData){
         <div>
-            <label>{{ PlayerData.GetName() }}</label>
-            <div class="spritePosition">
+            <label class="container">{{ PlayerData.GetName() }}</label>
+            <div class="container">
                 Gold:{{ PlayerData.GetGold() }}
             </div>
-            <div class="spritePosition">
+            <div class="container">
                 DPS:{{ PlayerData.GetDps() }}
             </div>
-            <div class="spritePosition">
+            <div class="container">
                 Click Damage:{{ PlayerData.GetClickDamage() }}
             </div>
         </div>

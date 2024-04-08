@@ -13,11 +13,12 @@ import { UpgradesComponent } from '@components/upgrades/upgrades.component';
 import LocalService from 'src/utils/localService';
 import { IPlayerData } from '@interfaces';
 import { START_HEROES_DATA, START_ITEMS_DATA } from 'src/utils/genericData';
+import { CreateNameComponent } from './components/create-name/create-name.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [CommonModule, RouterOutlet, PhaserGame, ReactiveFormsModule, ItemsComponent, HeroesComponent, UpgradesComponent],
+    imports: [CommonModule, RouterOutlet, PhaserGame, ReactiveFormsModule, ItemsComponent, HeroesComponent, UpgradesComponent, CreateNameComponent],
     templateUrl: './app.component.html',
 })
 export class AppComponent implements AfterViewInit
@@ -54,7 +55,8 @@ export class AppComponent implements AfterViewInit
                     this.PlayerData = new Player(name, gold, items, heroes, dps, clickDamage)
                 } else
                 {
-                    this.PlayerData = new Player("Name", 0, START_ITEMS_DATA, START_HEROES_DATA, 0, 1);
+                    const inputYourName = prompt('Input Your Name:');
+                    this.PlayerData = new Player(inputYourName || "", 0, START_ITEMS_DATA, START_HEROES_DATA, 0, 1);
                     const scene = this.phaserRef.scene as Game;
                     scene._player = this.PlayerData;
                     this._localService.saveData("playerData", JSON.stringify(this.PlayerData));
