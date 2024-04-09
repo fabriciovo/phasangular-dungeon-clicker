@@ -5,6 +5,7 @@ export interface IUpgrade
   mult: number;
   price: number;
   level: number;
+  mod: number;
 }
 
 export interface IItem

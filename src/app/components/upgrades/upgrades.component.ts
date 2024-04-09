@@ -15,6 +15,6 @@ export class UpgradesComponent
 
   public BuyUpgrage(upgrage: IUpgrade): void
   {
-    EventBus.emit("buyUpgrage", upgrage)
+    EventBus.emit("buyUpgrade", upgrage)
   }
 }

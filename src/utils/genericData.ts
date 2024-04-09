@@ -7,6 +7,7 @@ export const START_ITEMS_DATA: IItem[] = [
             mult: 0.32,
             price: 1,
             level: 1,
+            mod: 0.1
         }
     }, {
         id: "sword1", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
@@ -14,6 +15,7 @@ export const START_ITEMS_DATA: IItem[] = [
             mult: 0.32,
             price: 1,
             level: 1,
+            mod: 0.1
         }
     }
     , {
@@ -22,6 +24,7 @@ export const START_ITEMS_DATA: IItem[] = [
             mult: 0.32,
             price: 1,
             level: 1,
+            mod: 0.1
         }
     }, {
         id: "sword3", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
@@ -29,6 +32,7 @@ export const START_ITEMS_DATA: IItem[] = [
             mult: 0.32,
             price: 1,
             level: 1,
+            mod: 0.1
         }
     }, {
         id: "sword4", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
@@ -36,6 +40,7 @@ export const START_ITEMS_DATA: IItem[] = [
             mult: 0.32,
             price: 1,
             level: 1,
+            mod: 0.1
         }
     }, {
         id: "sword6", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
@@ -43,6 +48,7 @@ export const START_ITEMS_DATA: IItem[] = [
             mult: 0.32,
             price: 1,
             level: 1,
+            mod: 0.1
         }
     }, {
         id: "73", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
@@ -50,6 +56,7 @@ export const START_ITEMS_DATA: IItem[] = [
             mult: 0.32,
             price: 1,
             level: 1,
+            mod: 0.1
         }
     }, {
         id: "asdasd", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
@@ -57,6 +64,7 @@ export const START_ITEMS_DATA: IItem[] = [
             mult: 0.32,
             price: 1,
             level: 1,
+            mod: 0.1
         }
     }, {
         id: "asgwe", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
@@ -64,6 +72,7 @@ export const START_ITEMS_DATA: IItem[] = [
             mult: 0.32,
             price: 1,
             level: 1,
+            mod: 0.1
         }
     }, {
         id: "vxcxv", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
@@ -71,6 +80,7 @@ export const START_ITEMS_DATA: IItem[] = [
             mult: 0.32,
             price: 1,
             level: 1,
+            mod: 0.1
         }
     }, {
         id: "adgdhassdfgs", name: "Sword", clickDamage: 1, price: 20, level: 1, priceMult: 0.2, upgrade: {
@@ -78,6 +88,7 @@ export const START_ITEMS_DATA: IItem[] = [
             mult: 0.32,
             price: 1,
             level: 1,
+            mod: 0.1
         }
     }
 

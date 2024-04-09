@@ -1,4 +1,4 @@
-<div style="display: flex; flex-direction: column;">
+<div style="display: flex; flex-direction: column; overflow: scroll; overflow-x: hidden; height: 300px; margin:8px; border: solid 1px white;">
     @for (item of itemList; track item.id) {
     <button type="button" class="button" (click)="BuyUpgrage(item.upgrade)">
         <div style="display: flex; flex-direction: column;">

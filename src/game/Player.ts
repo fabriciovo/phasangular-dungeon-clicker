@@ -148,13 +148,19 @@ export default class Player
             return;
         };
         const upgradeIndex: number = this._items.findIndex(item => item.upgrade.id === _upgrade.id);
-        const upgrade = this._items[upgradeIndex];
+        const item = this._items[upgradeIndex];
 
-        this._gold -= upgrade.price;
+        this._gold -= item.upgrade.price;
 
-        upgrade.level++;
+        item.upgrade.level++;
 
-        upgrade.price *= upgrade.level;
+        item.upgrade.price *= item.upgrade.level;
+
+        item.clickDamage += item.clickDamage * item.upgrade.mod;
+
+        console.log(item.clickDamage)
+        
+        
     }
 
     private clickDamageEvent(_monster: Monster): void
