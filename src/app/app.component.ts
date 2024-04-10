@@ -59,7 +59,7 @@ export class AppComponent implements AfterViewInit
                 } else
                 {
                     const inputYourName = prompt('Input Your Name:');
-                    this.PlayerData = new Player(inputYourName || "",30000, START_ITEMS_DATA, START_HEROES_DATA, 0, 1);
+                    this.PlayerData = new Player(inputYourName || "",12320230302010000, START_ITEMS_DATA, START_HEROES_DATA, 0, 1);
                     const scene = this.phaserRef.scene as Game;
                     scene._player = this.PlayerData;
                     this._localService.saveData("playerData", JSON.stringify(this.PlayerData));

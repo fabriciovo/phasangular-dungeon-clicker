@@ -114,7 +114,7 @@ export default class Player
 
         item.level++;
         item.clickDamage += item.level * 1.2;
-        item.price *= item.level;
+        item.price += item.level * 0.2;
     }
 
     private buyHero(_hero: any): void

@@ -1,5 +1,5 @@
 <div
-    style="display: flex; flex-direction: column; overflow: scroll; overflow-x: hidden; height: 300px; margin:8px; border: solid 1px white;">
+    style="display: flex; flex-direction: column; overflow: scroll; overflow-x: hidden; height: 300px; margin:8px;">
     @for (item of items; track item.id) {
     <button class="button" (click)="BuyItem(item)">
         <label>{{ item.name }}</label>
@@ -21,5 +21,9 @@
         </div>
         <p>Level: {{item.level}}</p>
     </button>
+    <div style="display: flex; margin: 2px 10px auto;">
+        <button style="width: 100%;">10</button>
+        <button style="width: 100%;">MAX (290)</button>
+    </div>
     }
 </div>
