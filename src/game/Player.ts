@@ -156,11 +156,7 @@ export default class Player
 
         item.upgrade.price *= item.upgrade.level;
 
-        item.clickDamage += item.clickDamage * item.upgrade.mod;
-
-        console.log(item.clickDamage)
-        
-        
+        item.clickDamage += item.clickDamage * item.upgrade.mod;        
     }
 
     private clickDamageEvent(_monster: Monster): void

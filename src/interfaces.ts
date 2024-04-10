@@ -6,6 +6,7 @@ export interface IUpgrade
   price: number;
   level: number;
   mod: number;
+  unlockedLevel: number;
 }
 
 export interface IItem
