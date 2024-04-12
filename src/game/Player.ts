@@ -10,9 +10,10 @@ export default class Player
     private _gold: number;
     private _items: IItem[];
     private _heroes: any[];
-    private _dps: number = 2.4;
+    private _dps: number = 0;
     private _clickDamage: number = 1;
-
+    private _lastLogin: Date;
+    private _baseClickDamage: number = 1;
     constructor(name: string, gold: number, items: IItem[], heroes: any[], dps: number, clickDamage: number)
     {
         this._name = name;
@@ -20,7 +21,6 @@ export default class Player
         this._clickDamage = clickDamage;
         this._dps = dps;
         this._items = items;
-        console.log(this._items)
         this._heroes = heroes;
 
         this.initEvents();
@@ -59,12 +59,17 @@ export default class Player
 
     public GetClickDamage(): number
     {
+        let totalClickDamage = 0;
+        for (let _i = 0; _i < this._items.length; _i++)
+        {
+            const _item = this._items[_i];
+            if (_item.level === 1) continue;
+            totalClickDamage += _item.clickDamage * _item.upgrade.mod;
+            console.log(totalClickDamage)
+        }
+        this._clickDamage = totalClickDamage + this._baseClickDamage;
+        console.log(totalClickDamage)
         return this._clickDamage;
-    }
-
-    public SetClickDamage(_v: number): void
-    {
-        this._clickDamage = _v;
     }
 
     public Reward(_reward: any[]): void
@@ -156,11 +161,11 @@ export default class Player
 
         item.upgrade.price *= item.upgrade.level;
 
-        item.clickDamage += item.clickDamage * item.upgrade.mod;        
+        item.clickDamage += item.clickDamage * item.upgrade.mod;
     }
 
     private clickDamageEvent(_monster: Monster): void
     {
-        _monster.damage(this._clickDamage);
+        _monster.damage(this.GetClickDamage());
     }
 }
