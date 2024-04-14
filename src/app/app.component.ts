@@ -24,7 +24,6 @@ export class AppComponent implements AfterViewInit
 {
 
     public PlayerData: Player;
-
     public openMenuPanel: boolean = true;
     public openItemsPanel: boolean = false;
     public openHeroesPanel: boolean = false;
@@ -59,7 +58,7 @@ export class AppComponent implements AfterViewInit
                 } else
                 {
                     const inputYourName = prompt('Input Your Name:');
-                    this.PlayerData = new Player(inputYourName || "",12320230302010000, START_ITEMS_DATA, START_HEROES_DATA, 0, 1);
+                    this.PlayerData = new Player(inputYourName || "", 12320230302010000, START_ITEMS_DATA, START_HEROES_DATA, 0, 1);
                     const scene = this.phaserRef.scene as Game;
                     scene._player = this.PlayerData;
                     this._localService.saveData("playerData", JSON.stringify(this.PlayerData));
@@ -105,4 +104,19 @@ export class AppComponent implements AfterViewInit
         this.openItemsPanel = false;
         this.openMenuPanel = false;
     }
+
+    FormatNumber(value: number): string
+    {
+        const suffixes = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No", "Dc"];
+        let index = 0;
+
+        while (value >= 1000 && index < suffixes.length - 1)
+        {
+            value /= 1000;
+            index++;
+        }
+
+        return value.toFixed(2).replace(/\.0*$/, '') + suffixes[index];
+    }
+
 }

@@ -47,6 +47,9 @@
       "@interfaces": [
         "./src/interfaces.ts"
       ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
     },
   },
   "angularCompilerOptions": {

@@ -22,6 +22,7 @@ export class Game extends Scene
         EventBus.on("createHero", this.createHero, this)
     }
 
+
     create()
     {
         EventBus.emit('current-scene-ready', this);

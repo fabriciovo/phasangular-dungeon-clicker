@@ -5,13 +5,13 @@
         <div>
             <label class="container">{{ PlayerData.GetName() }}</label>
             <div class="container">
-                Gold:{{ PlayerData.GetGold() }}
+                Gold:{{ FormatNumber(PlayerData.GetGold()) }}
             </div>
             <div class="container">
-                DPS:{{ PlayerData.GetDps() }}
+                DPS:{{ FormatNumber(PlayerData.GetDps()) }}
             </div>
             <div class="container">
-                Click Damage:{{ PlayerData.GetClickDamage() }}
+                Click Damage:{{ FormatNumber(PlayerData.GetClickDamage()) }}
             </div>
         </div>
         <div *ngIf="openMenuPanel">

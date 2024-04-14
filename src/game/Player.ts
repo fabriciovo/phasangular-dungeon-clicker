@@ -65,10 +65,8 @@ export default class Player
             const _item = this._items[_i];
             if (_item.level === 1) continue;
             totalClickDamage += _item.clickDamage * _item.upgrade.mod;
-            console.log(totalClickDamage)
         }
         this._clickDamage = totalClickDamage + this._baseClickDamage;
-        console.log(totalClickDamage)
         return this._clickDamage;
     }
 

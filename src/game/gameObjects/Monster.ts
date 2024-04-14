@@ -8,11 +8,11 @@ export default class Monster extends GameObjects.Sprite
     private _healthbar: HealthBar;
     private _hp = 20;
     private _maxHp = 20;
-    private _xOrigin:number;
-    private _yOrigin:number;
+    private _xOrigin: number;
+    private _yOrigin: number;
     private _scene: Scene;
     private _shakeEffect: ShakePosition;
-
+    private _canTakeDamage: boolean = true;
 
     constructor(scene: Scene, x: number, y: number, texture: string, frame?: string | number)
     {
@@ -24,7 +24,7 @@ export default class Monster extends GameObjects.Sprite
 
 
         this._shakeEffect = new ShakePosition(this, {
-            mode: 1, 
+            mode: 1,
             duration: 100,
             magnitude: 10,
             magnitudeMode: 1,
@@ -36,6 +36,8 @@ export default class Monster extends GameObjects.Sprite
         this.setScale(2.78);
         EventBus.on("attack", this.damage, this);
         this._healthbar = new HealthBar(scene, x - 94, y + 48, 20, this._maxHp, 100);
+
+        this.tweenOnDeath();
     }
 
     initEvents()
@@ -43,6 +45,31 @@ export default class Monster extends GameObjects.Sprite
 
     }
 
+    tweenOnDeath()
+    {
+        // const chain = this.scene.tweens.chain({
+        //     targets: this,
+        //     tweens: [
+        //         {
+        //             x: { value: 600, duration: 750, ease: 'sine.in' },
+        //             y: { value: 390, duration: 750, ease: 'sine.in' },
+        //             ease: 'power3',
+        //             rotation: 90,
+        //             duration: 750
+        //         },
+        //         {
+        //             angle: 0,
+        //             ease: 'elastic.out',
+        //             duration: 500
+        //         },
+
+        //     ]
+        // });
+
+
+
+
+    }
     initAnimations(): void
     {
         this.anims.create({
@@ -56,6 +83,8 @@ export default class Monster extends GameObjects.Sprite
 
     public damage(_damage: number): void
     {
+        console.log("adssda")
+        if (!this._canTakeDamage) return;
         this._hp -= _damage;
         if (this._hp <= 0)
         {
@@ -90,12 +119,37 @@ export default class Monster extends GameObjects.Sprite
 
     updateMonster(): void
     {
+        this._canTakeDamage = false;
+        alert("asdas")
+        this.scene.add.tween({
+            targets: this,
+            ease: 'Sine.easeInOut',
+            duration: 1000,
+            delay: 0,
+            x: {
+                getStart: () => this.x,
+                getEnd: () => this.x + 21
+            },
+            y: {
+                getStart: () => this.y,
+                getEnd: () => this.y - 23
+            },
+            alpha: {
+                getStart: () => 1,
+                getEnd: () => 0
+            },
+            onComplete: () =>
+            {
+                EventBus.emit("reward", 10);
+                this._shakeEffect.stop();
+                this._maxHp = this._maxHp * 2;
+                this._hp = this._maxHp;
+                this.setPosition(this._xOrigin, this._yOrigin);
+                this._healthbar.Reset(this._maxHp);
+                this.setAlpha(1);
+                this._canTakeDamage = true;
+            }
+        });
 
-        EventBus.emit("reward", 10);
-        this._shakeEffect.stop();
-        this._maxHp = this._maxHp * 2;
-        this._hp = this._maxHp;
-        this.setPosition(this._xOrigin,this._yOrigin);
-        this._healthbar.Reset(this._maxHp);
     }
 }
