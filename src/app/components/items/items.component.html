@@ -9,14 +9,14 @@
                     flex-direction:column;">
                 <span>
                     <img src="/assets/icons/coin_icon.png" [alt]="'Gold ' + item.price" />
-                </span>{{item.price}}
+                </span>{{FormatNumber(item.price)}}
             </p>
             <p style="    
                     display: flex;
                     flex-direction:column;">
                 <span>
                     <img src="/assets/icons/dps_icon.png" [alt]="'clickDamage ' + item.clickDamage" />
-                </span>{{item.clickDamage}}
+                </span>{{FormatNumber(item.clickDamage)}}
             </p>
         </div>
         <p>Level: {{item.level}}</p>
@@ -28,5 +28,5 @@
 <div style="display: flex; margin: 2px 10px auto;">
     <button style="width: 100%;" (click)="SetCount(1)">1</button>
     <button style="width: 100%;" (click)="SetCount(10)">10</button>
-    <button style="width: 100%;" (click)="SetCount(-1)">MAX (290)</button>
+    <button style="width: 100%;" (click)="SetCount(-1)">MAX</button>
 </div>

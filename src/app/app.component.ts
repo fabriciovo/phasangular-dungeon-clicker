@@ -13,12 +13,15 @@ import { UpgradesComponent } from '@components/upgrades/upgrades.component';
 import LocalService from 'src/utils/localService';
 import { START_HEROES_DATA, START_ITEMS_DATA } from 'src/utils/genericData';
 import { CreateNameComponent } from './components/create-name/create-name.component';
+import FormatNumber from '@utils/formatter';
+import Formatter from '@utils/formatter';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     imports: [CommonModule, RouterOutlet, PhaserGame, ReactiveFormsModule, ItemsComponent, HeroesComponent, UpgradesComponent, CreateNameComponent],
     templateUrl: './app.component.html',
+
 })
 export class AppComponent implements AfterViewInit
 {
@@ -105,18 +108,8 @@ export class AppComponent implements AfterViewInit
         this.openMenuPanel = false;
     }
 
-    FormatNumber(value: number): string
+    public FormatNumber(_v: number): string
     {
-        const suffixes = ["", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No", "Dc"];
-        let index = 0;
-
-        while (value >= 1000 && index < suffixes.length - 1)
-        {
-            value /= 1000;
-            index++;
-        }
-
-        return value.toFixed(2).replace(/\.0*$/, '') + suffixes[index];
+        return Formatter(_v);
     }
-
 }

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IItem } from '../../../interfaces';
 import { EventBus } from '../../../game/EventBus';
+import Formatter from '@utils/formatter';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class ItemsComponent
 {
   @Input() items: IItem[] = [];
   public Count: number = 1;
+
   public BuyItem(item: IItem, count: number): void
   {
     EventBus.emit("buyItem", item, count);
@@ -22,5 +24,10 @@ export class ItemsComponent
   public SetCount(_v: number): void
   {
     this.Count = _v;
+  }
+
+  public FormatNumber(_v: number): string
+  {
+    return Formatter(_v);
   }
 }

@@ -6,7 +6,6 @@ import Hero from '../gameObjects/Hero';
 
 export class Game extends Scene
 {
-    private _camera: Cameras.Scene2D.Camera;
     private _background: GameObjects.Image;
     private _dpsTimer: Time.TimerEvent;
     public _player: Player;
@@ -26,8 +25,6 @@ export class Game extends Scene
     create()
     {
         EventBus.emit('current-scene-ready', this);
-
-        this._camera = this.cameras.main;
 
         this._background = this.add.image(0, 0, 'dungeon');
         this._background.setOrigin(0, 0);

@@ -9,7 +9,6 @@ class LocalService
 
   public saveData(key: string, value: any)
   {
-    console.log(value)
     localStorage.setItem(key, value);
   }
   public getData(key: string): any

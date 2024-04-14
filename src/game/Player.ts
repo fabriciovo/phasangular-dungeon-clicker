@@ -93,7 +93,6 @@ export default class Player
     public PlayerLoadData(playerData: string): void
     {
         const _playerData = JSON.parse(playerData);
-        console.log(_playerData);
         this._name = _playerData._name;
         this._gold = _playerData._gold;
         this._clickDamage = _playerData._clickDamage;
