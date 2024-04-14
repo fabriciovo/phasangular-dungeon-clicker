@@ -13,9 +13,14 @@ import { EventBus } from '../../../game/EventBus';
 export class ItemsComponent
 {
   @Input() items: IItem[] = [];
-
-  public BuyItem(item: IItem): void
+  public Count: number = 1;
+  public BuyItem(item: IItem, count: number): void
   {
-    EventBus.emit("buyItem", item)
+    EventBus.emit("buyItem", item, count);
+  }
+
+  public SetCount(_v: number): void
+  {
+    this.Count = _v;
   }
 }

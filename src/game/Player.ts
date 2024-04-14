@@ -102,7 +102,7 @@ export default class Player
 
     }
 
-    private buyItem(_item: IItem): void
+    private buyItem(_item: IItem, _count: number): void
     {
         if (this._gold < _item.price)
         {
@@ -112,12 +112,33 @@ export default class Player
         const itemIndex: number = this._items.findIndex(item => item.id === _item.id);
         const item = this._items[itemIndex];
 
-        this._gold -= item.price;
-        this._clickDamage += item.clickDamage;
+        if (_count >= 1)
+        {
+            for (let i = 0; i < _count; i++)
+            {
+                if (this._gold < _item.price) break;
 
-        item.level++;
-        item.clickDamage += item.level * 1.2;
-        item.price += item.level * 0.2;
+                this._gold -= item.price;
+                this._clickDamage += item.clickDamage;
+
+                item.level++;
+                item.clickDamage += item.level * 1.2;
+                item.price += item.level * 0.2;
+
+            }
+        }
+        if (_count === -1)
+        {
+            while (this._gold >= _item.price)
+            {
+                this._gold -= item.price;
+                this._clickDamage += item.clickDamage;
+
+                item.level++;
+                item.clickDamage += item.level * 1.2;
+                item.price += item.level * 0.2;
+            }
+        }
     }
 
     private buyHero(_hero: any): void
