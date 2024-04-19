@@ -2,6 +2,7 @@ import { GameObjects, Scene, Input } from 'phaser';
 import HealthBar from '../gameComponents/Healthbar';
 import { EventBus } from '../EventBus';
 import ShakePosition from 'phaser3-rex-plugins/plugins/behaviors/shake/ShakePosition';
+import Effect from './Effect';
 export default class Monster extends GameObjects.Sprite
 {
     private _texture: string | Phaser.Textures.Texture;
@@ -104,8 +105,14 @@ export default class Monster extends GameObjects.Sprite
                 getStart: () => 1,
                 getEnd: () => 0
             },
+            onStart: () =>
+            {
+
+            },
             onComplete: () =>
             {
+                const effect = new Effect(this._scene, this._xOrigin, this._yOrigin, 'smoke');
+                this._scene.add.existing(effect);
                 EventBus.emit("reward", 10);
                 this._shakeEffect.stop();
                 this._maxHp = this._maxHp * 2;
