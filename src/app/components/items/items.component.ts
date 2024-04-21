@@ -54,8 +54,6 @@ export class ItemsComponent
     {
       price += item.price;
     }
-
-    console.log("Aaaa", [price >= this.gold, price, this.gold])
     return this.gold >= price;
   }
 }
