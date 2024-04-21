@@ -14,6 +14,8 @@ import Formatter from '@utils/formatter';
 export class ItemsComponent
 {
   @Input() items: IItem[] = [];
+  @Input() gold: number = 0;
+
   public Count: number = 1;
 
   public BuyItem(item: IItem, count: number): void
@@ -29,5 +31,31 @@ export class ItemsComponent
   public FormatNumber(_v: number): string
   {
     return Formatter(_v);
+  }
+
+  public GetPrice(item: IItem): string
+  {
+    let price: number = 0;
+    if (this.Count > 0)
+    {
+      for (let i = 0; i < this.Count; i++)
+      {
+        price += item.price;
+      }
+    }
+    return Formatter(price);
+  }
+
+  public CanBuyIt(item: IItem): boolean
+  {
+    let price: number = 0;
+
+    for (let i = 0; i < this.Count; i++)
+    {
+      price += item.price;
+    }
+
+    console.log("Aaaa", [price >= this.gold, price, this.gold])
+    return this.gold >= price;
   }
 }

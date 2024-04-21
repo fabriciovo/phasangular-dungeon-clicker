@@ -1,15 +1,14 @@
-<div
-    style="display: flex; flex-direction: column; overflow: scroll; overflow-x: hidden; height: 300px; margin:8px;">
+<div style="display: flex; flex-direction: column; overflow: scroll; overflow-x: hidden; height: 300px; margin:8px;">
     @for (item of items; track item.id) {
-    <button class="button" (click)="BuyItem(item,Count)">
+    <button [class]="CanBuyIt(item) ? 'button' : 'button-red' " (click)="BuyItem(item,Count)" [disabled]="!CanBuyIt(item)">
         <label>{{ item.name }}</label>
         <div style="display: flex; justify-content: space-between;">
             <p style="    
                     display: flex;
                     flex-direction:column;">
                 <span>
-                    <img src="/assets/icons/coin_icon.png" [alt]="'Gold ' + item.price" />
-                </span>{{FormatNumber(item.price)}}
+                    <img src="/assets/icons/coin_icon.png" [alt]="'Price ' + GetPrice(item)" />
+                </span>{{GetPrice(item)}}
             </p>
             <p style="    
                     display: flex;
@@ -28,5 +27,5 @@
 <div style="display: flex; margin: 2px 10px auto;">
     <button style="width: 100%;" (click)="SetCount(1)">1</button>
     <button style="width: 100%;" (click)="SetCount(10)">10</button>
-    <button style="width: 100%;" (click)="SetCount(-1)">MAX</button>
+    <button style="width: 100%;" (click)="SetCount(100)">100</button>
 </div>

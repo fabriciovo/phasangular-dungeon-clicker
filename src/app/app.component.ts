@@ -13,8 +13,11 @@ import { UpgradesComponent } from '@components/upgrades/upgrades.component';
 import LocalService from 'src/utils/localService';
 import { START_HEROES_DATA, START_ITEMS_DATA } from 'src/utils/genericData';
 import { CreateNameComponent } from './components/create-name/create-name.component';
-import FormatNumber from '@utils/formatter';
 import Formatter from '@utils/formatter';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { decrement, increment, reset } from './global/buyCount.action';
+
 
 @Component({
     selector: 'app-root',
@@ -33,6 +36,7 @@ export class AppComponent implements AfterViewInit
     public openUpgradePanel: boolean = false;
 
     private _localService: LocalService = new LocalService();
+
 
     @ViewChild(PhaserGame) phaserRef!: PhaserGame;
 
@@ -61,7 +65,7 @@ export class AppComponent implements AfterViewInit
                 } else
                 {
                     const inputYourName = prompt('Input Your Name:');
-                    this.PlayerData = new Player(inputYourName || "", 12320230302010000, START_ITEMS_DATA, START_HEROES_DATA, 0, 1);
+                    this.PlayerData = new Player(inputYourName || "", 20, START_ITEMS_DATA, START_HEROES_DATA, 0, 1);
                     const scene = this.phaserRef.scene as Game;
                     scene._player = this.PlayerData;
                     this._localService.saveData("playerData", JSON.stringify(this.PlayerData));

@@ -27,8 +27,7 @@
         </div>
 
         @if (openItemsPanel) {
-        <app-items [items]="PlayerData.GetItems()"></app-items>
-
+        <app-items [items]="PlayerData.GetItems()" [gold]=" PlayerData.GetGold()"></app-items>
         }
 
         @if(openHeroesPanel){
