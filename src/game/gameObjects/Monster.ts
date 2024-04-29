@@ -44,7 +44,7 @@ export default class Monster extends GameObjects.Sprite
         this._healthbar = new HealthBar(scene, x, y, 2, this._maxHp, 16);
 
         this.scene.time.addEvent({
-            delay: 500, 
+            delay: 1000, 
             callback: this.moveEnemyRandomly,
             callbackScope: this,
             loop: true
