@@ -1,4 +1,4 @@
-import { GameObjects, Scene, Input } from 'phaser';
+import { GameObjects, Scene, Input, Tilemaps } from 'phaser';
 import HealthBar from '../gameComponents/Healthbar';
 import { EventBus } from '../EventBus';
 import ShakePosition from 'phaser3-rex-plugins/plugins/behaviors/shake/ShakePosition';
@@ -14,28 +14,42 @@ export default class Monster extends GameObjects.Sprite
     private _scene: Scene;
     private _shakeEffect: ShakePosition;
     private _canTakeDamage: boolean = true;
-
-    constructor(scene: Scene, x: number, y: number, texture: string, frame?: string | number)
+    private _isTakingDamage: boolean = false;
+    private _map: Tilemaps.Tilemap;
+    constructor(scene: Scene, x: number, y: number, texture: string, map: Tilemaps.Tilemap, frame?: string | number)
     {
         super(scene, x, y, texture, frame);
         this._scene = scene;
         this._texture = texture;
         this._xOrigin = x;
         this._yOrigin = y;
+        this._map = map;
 
         this._shakeEffect = new ShakePosition(this, {
             mode: 1,
             duration: 100,
-            magnitude: 10,
+            magnitude: 3,
             magnitudeMode: 1,
             axis: 0,
+        });
+        this._shakeEffect.on('complete', () =>
+        {
+            this._isTakingDamage = false;
         });
 
         this.initAnimations();
         this.mouseClick();
-        this.setScale(2.78);
+        this.setOrigin(0, 0)
         EventBus.on("attack", this.damage, this);
-        this._healthbar = new HealthBar(scene, x - 94, y + 48, 20, this._maxHp, 100);
+        this._healthbar = new HealthBar(scene, x, y, 2, this._maxHp, 16);
+
+        this.scene.time.addEvent({
+            delay: 500, 
+            callback: this.moveEnemyRandomly,
+            callbackScope: this,
+            loop: true
+        });
+
 
     }
 
@@ -53,14 +67,20 @@ export default class Monster extends GameObjects.Sprite
     public damage(_damage: number): void
     {
         if (!this._canTakeDamage) return;
+        const oldHp = this._hp;
         this._hp -= _damage;
+
+        if (this._hp < oldHp)
+        {
+            this._isTakingDamage = true;
+        }
+
         if (this._hp <= 0)
         {
             this.updateMonster()
         } else
         {
             this._healthbar.updateBar(this._hp);
-
         }
     }
 
@@ -124,5 +144,35 @@ export default class Monster extends GameObjects.Sprite
             }
         });
 
+    }
+    moveEnemyRandomly()
+    {
+        if (this._isTakingDamage) return;
+
+        const direction = Phaser.Math.RND.between(0, 3);
+        let newX = this.x;
+        let newY = this.y;
+        switch (direction)
+        {
+            case 0:
+                newY -= 16;
+                break;
+            case 1:
+                newY += 16;
+                break;
+            case 2:
+                newX -= 16;
+                break;
+            case 3:
+                newX += 16;
+                break;
+        }
+        const tile = this._map.getTileAtWorldXY(newX, newY, false, undefined, 'wall');
+        if (!tile)
+        {
+            this._healthbar.SetPosition(newX, newY);
+            this.x = Phaser.Math.Clamp(newX, 0, this._map.widthInPixels - this.width);
+            this.y = Phaser.Math.Clamp(newY, 0, this._map.heightInPixels - this.height);
+        }
     }
 }

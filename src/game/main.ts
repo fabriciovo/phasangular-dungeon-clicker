@@ -8,8 +8,8 @@ import ShakePositionPlugin from "phaser3-rex-plugins/plugins/shakeposition-plugi
 
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
-    width: 1024,
-    height: 768,
+    width: 320,
+    height: 240,
     parent: 'game-container',
     pixelArt: true,
     backgroundColor: '#028af8',
@@ -20,6 +20,7 @@ const config: Phaser.Types.Core.GameConfig = {
             start: true
         }],
     },
+    zoom: 3,
     scene: [
         Boot,
         Preloader,

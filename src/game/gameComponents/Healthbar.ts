@@ -28,7 +28,8 @@ export default class HealthBar
         this.updateBar(maxValue);
     }
 
-    public Reset(newMaxValue: number): void {
+    public Reset(newMaxValue: number): void
+    {
         this._maxValue = newMaxValue;
         this.drawBackgroundBar();
         this.updateBar(this._maxValue);
@@ -50,5 +51,11 @@ export default class HealthBar
 
         this._foregroundBar.fillStyle(0x00ff00);
         this._foregroundBar.fillRect(this._x, this._y, barWidth, this._height);
+    }
+
+    public SetPosition(x: number, y: number): void
+    {
+        this._x = x;
+        this._y = y;        
     }
 }
