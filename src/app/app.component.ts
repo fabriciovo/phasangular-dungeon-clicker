@@ -38,6 +38,7 @@ export class AppComponent implements AfterViewInit {
     public openItemsPanel: boolean = false;
     public openHeroesPanel: boolean = false;
     public openUpgradePanel: boolean = false;
+    public openPlayerInventoryPanel = false;
 
     private _localService: LocalService = new LocalService();
 
@@ -105,18 +106,29 @@ export class AppComponent implements AfterViewInit {
         this.openMenuPanel = false;
         this.openHeroesPanel = false;
         this.openUpgradePanel = false;
+        this.openPlayerInventoryPanel = false;
     }
     public OpenHeroesPanel(): void {
         this.openHeroesPanel = true;
         this.openItemsPanel = false;
         this.openMenuPanel = false;
         this.openUpgradePanel = false;
+        this.openPlayerInventoryPanel = false;
     }
     public OpenUpgradesPanel(): void {
         this.openUpgradePanel = true;
         this.openHeroesPanel = false;
         this.openItemsPanel = false;
         this.openMenuPanel = false;
+        this.openPlayerInventoryPanel = false;
+    }
+
+    public OpenPlayerInventoryPanel(): void {
+        this.openPlayerInventoryPanel = true;
+        this.openHeroesPanel = false;
+        this.openItemsPanel = false;
+        this.openMenuPanel = false;
+        this.openUpgradePanel = false;
     }
 
     public FormatNumber(_v: number): string {

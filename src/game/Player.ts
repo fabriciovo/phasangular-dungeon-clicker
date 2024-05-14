@@ -24,12 +24,7 @@ export default class Player {
         this._clickDamage = clickDamage;
         this._dps = dps;
         this._items = items;
-        this._heroes = [
-            { id: 'hero1', name: 'Joh', hp: 100, dps: 1, price: 20, level: 1 },
-            { id: 'hero2', name: 'Joh', hp: 100, dps: 1, price: 20, level: 2 },
-            { id: 'hero3', name: 'Joh', hp: 100, dps: 1, price: 20, level: 2 },
-            { id: 'hero4', name: 'Joh', hp: 100, dps: 1, price: 20, level: 2 },
-        ];
+        this._heroes = heroes;
 
         this.initEvents();
     }

@@ -14,11 +14,11 @@
             <p>Dps:{{ hero.dps }}</p>
         </div>
         <p>Level:{{ hero.level }}</p>
-        <button class="button" (click)="openDialog()">Inventory</button>
+        <button class="button" (click)="openInventory(hero)">Inventory</button>
     </div>
     } }
     <dialog #dialog>
         This is a dialog.
-        <button (click)="closeDialog()">Close</button>
+        <button (click)="closeInventory()">Close</button>
     </dialog>
 </div>

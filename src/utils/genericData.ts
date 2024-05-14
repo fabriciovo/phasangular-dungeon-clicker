@@ -105,4 +105,4 @@ export const START_ITEMS_DATA: IItem[] = [
 
 ]
 
-export const START_HEROES_DATA: any[] = [{ id: "hero1", name: "Joh", dps: 1, price: 20, level: 1 }]
+export const START_HEROES_DATA: any[] = [{ id: "hero1", name: "Joh", hp:100, dps: 1, price: 20, level: 1 }]

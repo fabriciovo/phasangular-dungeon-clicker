@@ -12,12 +12,12 @@ export class HeroesListComponent {
     public SelectedHero: any;
 
     @Input() heroList: any[] = [];
-    
-    openDialog() {
+
+    openInventory(hero: any) {
         this.dialog.nativeElement.showModal();
-      }
-    
-      closeDialog() {
+    }
+
+    closeInventory() {
         this.dialog.nativeElement.close();
-      }
+    }
 }
