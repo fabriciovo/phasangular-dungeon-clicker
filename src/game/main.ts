@@ -21,6 +21,8 @@ const config: Phaser.Types.Core.GameConfig = {
         }],
     },
     zoom: 3,
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
     scene: [
         Boot,
         Preloader,

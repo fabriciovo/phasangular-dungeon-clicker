@@ -20,8 +20,6 @@ export default class Hero extends GameObjects.Sprite
             callbackScope: this,
             loop: true
         });
-
-
     }
 
     initAnimations(): void

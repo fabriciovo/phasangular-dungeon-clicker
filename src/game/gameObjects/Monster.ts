@@ -23,6 +23,7 @@ export default class Monster extends GameObjects.Sprite
         this._texture = texture;
         this._xOrigin = x;
         this._yOrigin = y;
+
         this._map = map;
 
         this._shakeEffect = new ShakePosition(this, {
@@ -147,32 +148,29 @@ export default class Monster extends GameObjects.Sprite
     }
     moveEnemyRandomly()
     {
-        if (this._isTakingDamage) return;
-
-        const direction = Phaser.Math.RND.between(0, 3);
-        let newX = this.x;
-        let newY = this.y;
-        switch (direction)
-        {
-            case 0:
-                newY -= 16;
-                break;
-            case 1:
-                newY += 16;
-                break;
-            case 2:
-                newX -= 16;
-                break;
-            case 3:
-                newX += 16;
-                break;
-        }
-        const tile = this._map.getTileAtWorldXY(newX, newY, false, undefined, 'wall');
-        if (!tile)
-        {
-            this._healthbar.SetPosition(newX, newY);
-            this.x = Phaser.Math.Clamp(newX, 0, this._map.widthInPixels - this.width);
-            this.y = Phaser.Math.Clamp(newY, 0, this._map.heightInPixels - this.height);
-        }
+        // if (this._isTakingDamage) return;
+        // const direction = Phaser.Math.RND.between(0, 3);
+        // switch (direction)
+        // {
+        //     case 0:
+        //         this.y -= 16;
+        //         break;
+        //     case 1:
+        //         this.y += 16;
+        //         break;
+        //     case 2:
+        //         this.x -= 16;
+        //         break;
+        //     case 3:
+        //         this.x += 16;
+        //         break;
+        // }
+        // const tile = this._map.getTileAtWorldXY(this.x, this.y, false, undefined, 'wall');
+        // if (!tile)
+        // {
+           
+        //     this.x = Phaser.Math.Clamp(this.x, 0, this._map.widthInPixels - this.width);
+        //     this.y = Phaser.Math.Clamp(this.y, 0, this._map.heightInPixels - this.height);
+        // }
     }
 }

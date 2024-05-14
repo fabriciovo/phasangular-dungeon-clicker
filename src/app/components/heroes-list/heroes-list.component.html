@@ -1,0 +1,23 @@
+<div style="">
+    @for(hero of heroList; track hero.id){ @if(hero.level<=1){
+    <div></div>
+    } @else{
+    <div style="margin: 12px">
+        <div style="display: flex; flex-direction: column">
+            <span style="align-self: center">
+                <img src="/assets/icons/{{ hero }}_icon.png" />
+            </span>
+            <label></label>
+        </div>
+        <div style="display: flex; justify-content: space-between">
+            <p>Hp:{{ hero.hp }}</p>
+            <p>Dps:{{ hero.dps }}</p>
+        </div>
+        <p>Level:{{ hero.level }}</p>
+        <button class="button">Inventory</button>
+    </div>
+    } }
+    <dialog>
+        {{ SelectedHero }}
+    </dialog>
+</div>

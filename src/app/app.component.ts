@@ -14,21 +14,25 @@ import LocalService from 'src/utils/localService';
 import { START_HEROES_DATA, START_ITEMS_DATA } from 'src/utils/genericData';
 import { CreateNameComponent } from './components/create-name/create-name.component';
 import Formatter from '@utils/formatter';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { decrement, increment, reset } from './global/buyCount.action';
-
+import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [CommonModule, RouterOutlet, PhaserGame, ReactiveFormsModule, ItemsComponent, HeroesComponent, UpgradesComponent, CreateNameComponent],
+    imports: [
+        CommonModule,
+        RouterOutlet,
+        PhaserGame,
+        ReactiveFormsModule,
+        ItemsComponent,
+        HeroesComponent,
+        UpgradesComponent,
+        CreateNameComponent,
+        HeroesListComponent,
+    ],
     templateUrl: './app.component.html',
-
 })
-export class AppComponent implements AfterViewInit
-{
-
+export class AppComponent implements AfterViewInit {
     public PlayerData: Player;
     public openMenuPanel: boolean = true;
     public openItemsPanel: boolean = false;
@@ -37,18 +41,13 @@ export class AppComponent implements AfterViewInit
 
     private _localService: LocalService = new LocalService();
 
-
     @ViewChild(PhaserGame) phaserRef!: PhaserGame;
 
-    ngAfterViewInit()
-    {
-        EventBus.on('current-scene-ready', (scene: Phaser.Scene) =>
-        {
-            if (scene.scene.key === "Game")
-            {
-                const playerData = this._localService.getData("playerData");
-                if (playerData)
-                {
+    ngAfterViewInit() {
+        EventBus.on('current-scene-ready', (scene: Phaser.Scene) => {
+            if (scene.scene.key === 'Game') {
+                const playerData = this._localService.getData('playerData');
+                if (playerData) {
                     const _playerData = JSON.parse(playerData);
                     const name = _playerData._name;
                     const gold = _playerData._gold;
@@ -57,63 +56,70 @@ export class AppComponent implements AfterViewInit
                     const heroes = _playerData._heroes;
                     const dps = _playerData._dps;
 
-                    this.PlayerData = new Player(name, gold, items, heroes, dps, clickDamage)
+                    this.PlayerData = new Player(
+                        name,
+                        gold,
+                        items,
+                        heroes,
+                        dps,
+                        clickDamage
+                    );
 
                     const scene = this.phaserRef.scene as Game;
                     scene._player = this.PlayerData;
-
-                } else
-                {
+                } else {
                     const inputYourName = prompt('Input Your Name:');
-                    this.PlayerData = new Player(inputYourName || "", 20, START_ITEMS_DATA, START_HEROES_DATA, 0, 1);
+                    this.PlayerData = new Player(
+                        inputYourName || '',
+                        20,
+                        START_ITEMS_DATA,
+                        START_HEROES_DATA,
+                        0,
+                        1
+                    );
                     const scene = this.phaserRef.scene as Game;
                     scene._player = this.PlayerData;
-                    this._localService.saveData("playerData", JSON.stringify(this.PlayerData));
+                    this._localService.saveData(
+                        'playerData',
+                        JSON.stringify(this.PlayerData)
+                    );
                 }
             }
         });
     }
 
-    ngOnInit()
-    {
+    ngOnInit() {
         // fetch('/player').then(res => res.json())
         // .then(data =>data)
     }
 
-    public Back(): void
-    {
+    public Back(): void {
         this.openMenuPanel = true;
         this.openItemsPanel = false;
         this.openHeroesPanel = false;
         this.openUpgradePanel = false;
     }
 
-    public OpenItemsPanel(): void
-    {
+    public OpenItemsPanel(): void {
         this.openItemsPanel = true;
         this.openMenuPanel = false;
         this.openHeroesPanel = false;
         this.openUpgradePanel = false;
-
     }
-    public OpenHeroesPanel(): void
-    {
+    public OpenHeroesPanel(): void {
         this.openHeroesPanel = true;
         this.openItemsPanel = false;
         this.openMenuPanel = false;
         this.openUpgradePanel = false;
-
     }
-    public OpenUpgradesPanel(): void
-    {
+    public OpenUpgradesPanel(): void {
         this.openUpgradePanel = true;
         this.openHeroesPanel = false;
         this.openItemsPanel = false;
         this.openMenuPanel = false;
     }
 
-    public FormatNumber(_v: number): string
-    {
+    public FormatNumber(_v: number): string {
         return Formatter(_v);
     }
 }

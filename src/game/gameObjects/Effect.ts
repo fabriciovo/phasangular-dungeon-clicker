@@ -6,8 +6,9 @@ export default class Effect extends GameObjects.Sprite
     {
         super(scene, x, y, texture, frame);
         this._texture = texture;
-        
-        this.setScale(3.8);
+
+        this.setScale(0.8,0.8);
+        this.setOrigin(0,0);
         this.initAnimations();
     }
 

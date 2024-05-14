@@ -1,7 +1,10 @@
 <main id="app">
+    @if(PlayerData){ @if (PlayerData.GetHeroes().length > 0) {
+    <app-heroes-list [heroList]="PlayerData.GetHeroes()"></app-heroes-list>
+    } }
     <phaser-game />
+    @if(PlayerData){
     <div>
-        @if(PlayerData){
         <div>
             <label class="container">{{ PlayerData.GetName() }}</label>
             <div class="container">
@@ -17,104 +20,31 @@
         @if(openMenuPanel){
         <div>
             <div>
-                <button class="button" (click)="OpenItemsPanel()">Items </button>
+                <button class="button" (click)="OpenItemsPanel()">Items</button>
             </div>
             <div>
-                <button class="button" (click)="OpenUpgradesPanel()">Upgrades</button>
+                <button class="button" (click)="OpenUpgradesPanel()">
+                    Upgrades
+                </button>
             </div>
             <div>
-                <button class="button" (click)="OpenHeroesPanel()">Heroes</button>
+                <button class="button" (click)="OpenHeroesPanel()">
+                    Heroes
+                </button>
             </div>
         </div>
-        }
-
-        @if (openItemsPanel) {
-        <app-items [items]="PlayerData.GetItems()" [gold]="PlayerData.GetGold()"></app-items>
-        }
-
-        @if(openHeroesPanel){
+        } @if (openItemsPanel) {
+        <app-items
+            [items]="PlayerData.GetItems()"
+            [gold]="PlayerData.GetGold()"
+        ></app-items>
+        } @if(openHeroesPanel){
         <app-heroes [heroes]="PlayerData.GetHeroes()"></app-heroes>
-        }
-
-        @if(openUpgradePanel){
+        } @if(openUpgradePanel){
         <app-upgrades [itemList]="PlayerData.GetItems()"></app-upgrades>
-        }
-
-        @if (!openMenuPanel) {
+        } @if (!openMenuPanel) {
         <button class="button" (click)="Back()">Back</button>
         }
-        }
     </div>
+    }
 </main>
-<div style="display: flex; justify-content: center; ">
-    <div style="margin: 12px;">
-        <div style="display: flex; flex-direction: column;">
-            <span style="align-self: center;">
-                <img src="/assets/icons/coin_icon.png" />
-            </span>
-            <label></label>
-        </div>
-        <div style="display: flex; justify-content: space-between;">
-            <p>Hp: </p>
-            <p>Dps: </p>
-        </div>
-        <p>Level: </p>
-        <button class="button">Inventory</button>
-    </div>
-    <div style="margin: 12px;">
-        <div style="display: flex; flex-direction: column;">
-            <span style="align-self: center;">
-                <img src="/assets/icons/coin_icon.png" />
-            </span>
-            <label></label>
-        </div>
-        <div style="display: flex; justify-content: space-between;">
-            <p>Hp: </p>
-            <p>Dps: </p>
-        </div>
-        <p>Level: </p>
-        <button class="button">Inventory</button>
-    </div>
-    <div style="margin: 12px;">
-        <div style="display: flex; flex-direction: column;">
-            <span style="align-self: center;">
-                <img src="/assets/icons/coin_icon.png" />
-            </span>
-            <label></label>
-        </div>
-        <div style="display: flex; justify-content: space-between;">
-            <p>Hp: </p>
-            <p>Dps: </p>
-        </div>
-        <p>Level: </p>
-        <button class="button">Inventory</button>
-    </div>
-    <div style="margin: 12px;">
-        <div style="display: flex; flex-direction: column;">
-            <span style="align-self: center;">
-                <img src="/assets/icons/coin_icon.png" />
-            </span>
-            <label></label>
-        </div>
-        <div style="display: flex; justify-content: space-between;">
-            <p>Hp: </p>
-            <p>Dps: </p>
-        </div>
-        <p>Level: </p>
-        <button class="button">Inventory</button>
-    </div>
-    <div style="margin: 12px;">
-        <div style="display: flex; flex-direction: column;">
-            <span style="align-self: center;">
-                <img src="/assets/icons/coin_icon.png" />
-            </span>
-            <label></label>
-        </div>
-        <div style="display: flex; justify-content: space-between;">
-            <p>Hp: </p>
-            <p>Dps: </p>
-        </div>
-        <p>Level: </p>
-        <button class="button">Inventory</button>
-    </div>
-</div>
