@@ -15,6 +15,7 @@ import { START_HEROES_DATA, START_ITEMS_DATA } from 'src/utils/genericData';
 import { CreateNameComponent } from './components/create-name/create-name.component';
 import Formatter from '@utils/formatter';
 import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
+import { PlayerInventoryComponent } from './components/player-inventory/player-inventory.component';
 
 @Component({
     selector: 'app-root',
@@ -29,6 +30,7 @@ import { HeroesListComponent } from './components/heroes-list/heroes-list.compon
         UpgradesComponent,
         CreateNameComponent,
         HeroesListComponent,
+        PlayerInventoryComponent
     ],
     templateUrl: './app.component.html',
 })
@@ -99,6 +101,7 @@ export class AppComponent implements AfterViewInit {
         this.openItemsPanel = false;
         this.openHeroesPanel = false;
         this.openUpgradePanel = false;
+        this.openPlayerInventoryPanel = false;
     }
 
     public OpenItemsPanel(): void {

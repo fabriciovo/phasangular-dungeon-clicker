@@ -33,7 +33,7 @@
                 </button>
             </div>
             <div>
-                <button class="button" (click)="OpenHeroesPanel()">
+                <button class="button" (click)="OpenPlayerInventoryPanel()">
                     Player Inventory
                 </button>
             </div>
@@ -47,6 +47,8 @@
         <app-heroes [heroes]="PlayerData.GetHeroes()"></app-heroes>
         } @if(openUpgradePanel){
         <app-upgrades [itemList]="PlayerData.GetItems()"></app-upgrades>
+        }@if(openPlayerInventoryPanel){
+        <app-player-inventory [playerItems]="[]"></app-player-inventory>
         } @if (!openMenuPanel) {
         <button class="button" (click)="Back()">Back</button>
         }

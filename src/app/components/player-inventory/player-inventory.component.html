@@ -1,0 +1,28 @@
+<div style="display: flex; flex-direction: column; overflow: scroll; overflow-x: hidden; height: 300px; margin:8px; border: solid 1px white;">
+    @for (item of playerItems; track item.id) {
+    <button type="button" class="button">
+        <div style="display: flex; flex-direction: column;">
+            <span>
+                <img src="/assets/icons/coin_icon.png" [alt]="'Gold ' + item.price" />
+            </span>
+            <label>{{ item.name }}</label>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <p style="    
+            display: flex;
+            flex-direction:column;">
+                <span>
+                    <img src="/assets/icons/coin_icon.png" [alt]="'Gold ' + item.price" />
+                </span>{{item.price}}
+            </p>
+            <p style="
+            display: flex;
+            flex-direction:column;">
+                <span>
+                    <img src="/assets/icons/dps_icon.png" [alt]="'dps ' + item.dps" />
+                </span>{{item.dps}}
+            </p>
+        </div>
+    </button>
+    }
+</div>
