@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import Hero from '@gameObjects/Hero';
 
 @Component({
     selector: 'app-heroes-list',
@@ -9,11 +10,11 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 })
 export class HeroesListComponent {
     @ViewChild('dialog') dialog: ElementRef;
-    public SelectedHero: any;
+    public SelectedHero: Hero;
 
-    @Input() heroList: any[] = [];
+    @Input() heroList: Hero[] = [];
 
-    openInventory(hero: any) {
+    openInventory(hero: Hero) {
         this.dialog.nativeElement.showModal();
     }
 

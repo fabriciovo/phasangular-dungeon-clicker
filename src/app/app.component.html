@@ -1,20 +1,20 @@
 <main id="app">
-    @if(PlayerData){ @if (PlayerData.GetHeroes().length > 0) {
-    <app-heroes-list [heroList]="PlayerData.GetHeroes()"></app-heroes-list>
+    @if(PlayerData){ @if (PlayerData.Heroes.length > 0) {
+    <app-heroes-list [heroList]="PlayerData.Heroes"></app-heroes-list>
     } }
     <phaser-game />
     @if(PlayerData){
     <div>
         <div>
-            <label class="container">{{ PlayerData.GetName() }}</label>
+            <label class="container">{{ PlayerData.Name }}</label>
             <div class="container">
-                Gold:{{ FormatNumber(PlayerData.GetGold()) }}
+                Gold:{{ FormatNumber(PlayerData.Gold) }}
             </div>
             <div class="container">
-                DPS:{{ FormatNumber(PlayerData.GetDps()) }}
+                DPS:{{ FormatNumber(PlayerData.Dps) }}
             </div>
             <div class="container">
-                Click Damage:{{ FormatNumber(PlayerData.GetClickDamage()) }}
+                Click Damage:{{ FormatNumber(PlayerData.ClickDamage) }}
             </div>
         </div>
         @if(openMenuPanel){
@@ -40,13 +40,13 @@
         </div>
         } @if (openItemsPanel) {
         <app-items
-            [items]="PlayerData.GetItems()"
-            [gold]="PlayerData.GetGold()"
+            [items]="PlayerData.Items"
+            [gold]="PlayerData.Gold"
         ></app-items>
         } @if(openHeroesPanel){
-        <app-heroes [heroes]="PlayerData.GetHeroes()"></app-heroes>
+        <app-heroes [heroes]="PlayerData.Heroes"></app-heroes>
         } @if(openUpgradePanel){
-        <app-upgrades [itemList]="PlayerData.GetItems()"></app-upgrades>
+        <app-upgrades [itemList]="PlayerData.Items"></app-upgrades>
         }@if(openPlayerInventoryPanel){
         <app-player-inventory [playerItems]="[]"></app-player-inventory>
         } @if (!openMenuPanel) {

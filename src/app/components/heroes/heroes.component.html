@@ -1,29 +1,44 @@
-<div style="display: flex; flex-direction: column; overflow: scroll; overflow-x: hidden; height: 300px; margin:8px; border: solid 1px white;">
-    @for (hero of heroes; track hero.id) {
+<div
+    style="
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+        overflow-x: hidden;
+        height: 300px;
+        margin: 8px;
+        border: solid 1px white;
+    "
+>
+    @for (hero of heroes; track hero.Id) {
     <button type="button" class="button" (click)="BuyItem(hero)">
-        <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; flex-direction: column">
             <span>
-                <img src="/assets/icons/coin_icon.png" [alt]="'Gold ' + hero.price" />
+                <img
+                    src="/assets/icons/coin_icon.png"
+                    [alt]="'Gold ' + hero.Price"
+                />
             </span>
             <label>{{ hero.name }}</label>
         </div>
-        <div style="display: flex; justify-content: space-between;">
-            <p style="    
-            display: flex;
-            flex-direction:column;">
+        <div style="display: flex; justify-content: space-between">
+            <p style="display: flex; flex-direction: column">
                 <span>
-                    <img src="/assets/icons/coin_icon.png" [alt]="'Gold ' + hero.price" />
-                </span>{{hero.price}}
+                    <img
+                        src="/assets/icons/coin_icon.png"
+                        [alt]="'Gold ' + hero.Price"
+                    /> </span
+                >{{ hero.Price }}
             </p>
-            <p style="
-            display: flex;
-            flex-direction:column;">
+            <p style="display: flex; flex-direction: column">
                 <span>
-                    <img src="/assets/icons/dps_icon.png" [alt]="'dps ' + hero.dps" />
-                </span>{{hero.dps}}
+                    <img
+                        src="/assets/icons/dps_icon.png"
+                        [alt]="'dps ' + hero.Dps"
+                    /> </span
+                >{{ hero.Dps }}
             </p>
         </div>
-        <p>Level: {{hero.level}}</p>
+        <p>Level: {{ hero.Level }}</p>
     </button>
     }
 </div>

@@ -1,12 +1,13 @@
 import Monster from '@gameObjects/Monster';
 import { EventBus } from './EventBus';
 import { IItem, IUpgrade, IPlayerData } from '@interfaces';
+import Hero from '@gameObjects/Hero';
 
 export default class Player {
     private _name: string;
     private _gold: number;
     private _items: IItem[];
-    private _heroes: any[];
+    private _heroes: Hero[];
     private _dps: number = 0;
     private _clickDamage: number = 1;
     private _lastLogin: Date;
@@ -34,26 +35,26 @@ export default class Player {
         EventBus.on('buyItem', this.buyItem, this);
         EventBus.on('buyHero', this.buyHero, this);
         EventBus.on('buyUpgrade', this.buyUpgrade, this);
-        EventBus.on('reward', this.SetGold, this);
+        EventBus.on('reward', this.setGold, this);
     }
 
-    public GetGold(): number {
+    public get Gold() {
         return this._gold;
     }
 
-    public SetGold(_v: number): void {
+    public set Gold(_v: number) {
         this._gold += _v;
     }
 
-    public GetDps(): number {
+    public get Dps() {
         return this._dps;
     }
 
-    public SetDps(_v: number): void {
+    public set Dps(_v: number) {
         this._dps = _v;
     }
 
-    public GetClickDamage(): number {
+    public get ClickDamage() {
         let totalClickDamage = 0;
         for (let _i = 0; _i < this._items.length; _i++) {
             const _item = this._items[_i];
@@ -66,15 +67,15 @@ export default class Player {
 
     public Reward(_reward: any[]): void {}
 
-    public GetItems(): IItem[] {
+    public get Items(): IItem[] {
         return this._items;
     }
 
-    public GetHeroes(): any[] {
+    public get Heroes(): any[] {
         return this._heroes;
     }
 
-    public GetName(): string {
+    public get Name(): string {
         return this._name;
     }
 
@@ -121,24 +122,24 @@ export default class Player {
         }
     }
 
-    private buyHero(_hero: any): void {
-        if (this._gold < _hero.price) {
+    private buyHero(_hero: Hero): void {
+        if (this._gold < _hero.Price) {
             //EventBus.emit("cantBuy")
             return;
         }
         const heroIndex: number = this._heroes.findIndex(
-            (hero) => hero.id === _hero.id
+            (hero) => hero.Id === _hero.Id
         );
         const hero = this._heroes[heroIndex];
 
-        this._gold -= hero.price;
-        this._dps += hero.dps;
+        this._gold -= hero.Price;
+        this._dps += hero.Dps;
 
-        hero.level++;
-        hero.dps *= hero.level;
-        hero.price *= hero.level;
+        hero.Level++;
+        hero.Dps *= hero.Level;
+        hero.Price *= hero.Level;
 
-        if (hero.level === 2) {
+        if (hero.Level === 2) {
             EventBus.emit('createHero', hero.name);
         }
     }
@@ -163,6 +164,10 @@ export default class Player {
     }
 
     private clickDamageEvent(_monster: Monster): void {
-        _monster.damage(this.GetClickDamage());
+        _monster.damage(this.ClickDamage);
+    }
+
+    private setGold(value: number): void {
+        this._gold = value;
     }
 }

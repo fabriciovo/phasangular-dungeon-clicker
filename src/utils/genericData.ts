@@ -1,3 +1,4 @@
+import Hero from '@gameObjects/Hero';
 import { IItem } from '@interfaces';
 
 export const START_ITEMS_DATA: IItem[] = [
@@ -180,5 +181,9 @@ export const START_ITEMS_DATA: IItem[] = [
 ];
 
 export const START_HEROES_DATA: any[] = [
-    { id: 'hero1', name: 'Joh', hp: 100, dps: 1, price: 20, level: 1 },
+    { id: 'hero1', name: 'knight', hp: 100, dps: 1, price: 20, level: 1 },
+    { id: 'hero2', name: 'wizard', hp: 100, dps: 1, price: 20, level: 1 },
+    { id: 'hero3', name: 'warrior', hp: 100, dps: 1, price: 20, level: 1 },
+    { id: 'hero4', name: 'archer', hp: 100, dps: 1, price: 20, level: 1 },
+
 ];

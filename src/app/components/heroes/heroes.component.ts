@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { EventBus } from '../../../game/EventBus';
+import Hero from '@gameObjects/Hero';
 
 @Component({
   selector: 'app-heroes',
@@ -9,9 +10,9 @@ import { EventBus } from '../../../game/EventBus';
   styleUrl: './heroes.component.css'
 })
 export class HeroesComponent {
-  @Input() heroes: any[] = [];
+  @Input() heroes: Hero[] = [];
 
-  public BuyItem(hero: any): void
+  public BuyItem(hero: Hero): void
   {
     EventBus.emit("buyHero", hero)
   }
