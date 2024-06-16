@@ -71,6 +71,7 @@ export class AppComponent implements AfterViewInit {
                     const scene = this.phaserRef.scene as Game;
                     scene._player = this.PlayerData;
                 } else {
+                    const scene = this.phaserRef.scene as Game;
                     const inputYourName = prompt('Input Your Name:');
                     this.PlayerData = new Player(
                         inputYourName || '',
@@ -80,7 +81,7 @@ export class AppComponent implements AfterViewInit {
                         0,
                         1
                     );
-                    const scene = this.phaserRef.scene as Game;
+                   
                     scene._player = this.PlayerData;
                     this._localService.saveData(
                         'playerData',
