@@ -58,7 +58,7 @@ export class AppComponent implements AfterViewInit {
                     const items = _playerData._items;
                     const heroes = _playerData._heroes;
                     const dps = _playerData._dps;
-
+                    
                     this.PlayerData = new Player(
                         name,
                         gold,
@@ -77,12 +77,14 @@ export class AppComponent implements AfterViewInit {
                         inputYourName || '',
                         20,
                         START_ITEMS_DATA,
-                        START_HEROES_DATA,
+                        //TODO - Pass heroes stats
+                        scene.Heroes,
                         0,
                         1
                     );
-                   
+                    console.log(scene.Heroes)
                     scene._player = this.PlayerData;
+                    console.log(JSON.stringify(this.PlayerData))
                     this._localService.saveData(
                         'playerData',
                         JSON.stringify(this.PlayerData)

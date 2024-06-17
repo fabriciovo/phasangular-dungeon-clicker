@@ -146,4 +146,8 @@ export class Game extends Scene {
         const y = Phaser.Math.Between(120, 468);
         this.add.existing(this.heroes[0]);
     }
+
+    public get Heroes(){
+        return this.heroes;
+    }
 }

@@ -16,7 +16,7 @@ export default class Player {
         name: string,
         gold: number,
         items: IItem[],
-        heroes: any[],
+        heroes: Hero[],
         dps: number,
         clickDamage: number
     ) {
@@ -26,7 +26,6 @@ export default class Player {
         this._dps = dps;
         this._items = items;
         this._heroes = heroes;
-
         this.initEvents();
     }
 

@@ -1,11 +1,11 @@
 <div style="">
     @for(hero of heroList; track hero.Id){ @if(hero.Level<=1){
-    <div>empty</div>
+    <div></div>
     } @else{
     <div style="margin: 12px">
         <div style="display: flex; flex-direction: column">
             <span style="align-self: center">
-                <img src="./assets/characters/{{hero.Name}}.png" />
+                <img src="./assets/characters/{{ hero.Name }}.png" />
             </span>
             <label></label>
         </div>
