@@ -147,7 +147,7 @@ export class Game extends Scene {
         this.add.existing(this.heroes[0]);
     }
 
-    public get Heroes(){
+    public get Heroes() {
         return this.heroes;
     }
 }

@@ -1,6 +1,7 @@
+import { IHero, IUpgrade } from '@interfaces';
 import { GameObjects, Scene, Tilemaps } from 'phaser';
 
-export default class Hero extends GameObjects.Sprite {
+export default class Hero extends Phaser.GameObjects.Sprite implements IHero  {
     private _texture: string | Phaser.Textures.Texture;
     private _map: Tilemaps.Tilemap;
     private _target: { x: number; y: number } = { x: 0, y: 0 };
@@ -11,6 +12,7 @@ export default class Hero extends GameObjects.Sprite {
     private _hp: number;
     private _maxHp: number;
     private _dps: number;
+    private _upgrade: IUpgrade;
     constructor(
         scene: Scene,
         x: number,
@@ -48,6 +50,7 @@ export default class Hero extends GameObjects.Sprite {
             loop: true,
         });
     }
+
 
     initAnimations(): void {
         this.anims.create({

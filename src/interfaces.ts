@@ -20,6 +20,18 @@ export interface IItem
   priceMult: number;
 }
 
+export interface IHero
+{
+  Id: string;
+  Name: string;
+  Price: number;
+  Dps: number;
+  Level: number;
+  Upgrade: IUpgrade;
+  PriceMult: number;
+  Hp: number;
+}
+
 export interface IPlayerData {
   name: string;
   gold: number;

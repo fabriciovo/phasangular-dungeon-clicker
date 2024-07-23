@@ -1,13 +1,13 @@
 import Monster from '@gameObjects/Monster';
 import { EventBus } from './EventBus';
-import { IItem, IUpgrade, IPlayerData } from '@interfaces';
+import { IItem, IUpgrade, IPlayerData, IHero } from '@interfaces';
 import Hero from '@gameObjects/Hero';
 
 export default class Player {
     private _name: string;
     private _gold: number;
     private _items: IItem[];
-    private _heroes: Hero[];
+    private _heroes: IHero[];
     private _dps: number = 0;
     private _clickDamage: number = 1;
     private _lastLogin: Date;
@@ -16,7 +16,7 @@ export default class Player {
         name: string,
         gold: number,
         items: IItem[],
-        heroes: Hero[],
+        heroes: IHero[],
         dps: number,
         clickDamage: number
     ) {
@@ -121,24 +121,24 @@ export default class Player {
         }
     }
 
-    private buyHero(_hero: Hero): void {
-        if (this._gold < _hero.Price) {
+    private buyHero(_hero: IHero): void {
+        if (this._gold < _hero.price) {
             //EventBus.emit("cantBuy")
             return;
         }
         const heroIndex: number = this._heroes.findIndex(
-            (hero) => hero.Id === _hero.Id
+            (hero) => hero.id === _hero.id
         );
         const hero = this._heroes[heroIndex];
 
-        this._gold -= hero.Price;
-        this._dps += hero.Dps;
+        this._gold -= hero.price;
+        this._dps += hero.dps;
 
-        hero.Level++;
-        hero.Dps *= hero.Level;
-        hero.Price *= hero.Level;
+        hero.level++;
+        hero.dps *= hero.level;
+        hero.price *= hero.level;
 
-        if (hero.Level === 2) {
+        if (hero.level === 2) {
             EventBus.emit('createHero', hero.name);
         }
     }

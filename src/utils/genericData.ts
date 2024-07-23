@@ -1,5 +1,5 @@
 import Hero from '@gameObjects/Hero';
-import { IItem } from '@interfaces';
+import { IHero, IItem } from '@interfaces';
 
 export const START_ITEMS_DATA: IItem[] = [
     {
@@ -180,10 +180,73 @@ export const START_ITEMS_DATA: IItem[] = [
     },
 ];
 
-export const START_HEROES_DATA: any[] = [
-    { id: 'hero1', name: 'knight', hp: 100, dps: 1, price: 20, level: 1 },
-    { id: 'hero2', name: 'wizard', hp: 100, dps: 1, price: 20, level: 1 },
-    { id: 'hero3', name: 'warrior', hp: 100, dps: 1, price: 20, level: 1 },
-    { id: 'hero4', name: 'archer', hp: 100, dps: 1, price: 20, level: 1 },
-
+export const START_HEROES_DATA: IHero[] = [
+    {
+        id: 'hero1',
+        name: 'knight',
+        hp: 100,
+        dps: 1,
+        price: 20,
+        level: 1,
+        priceMult: 20,
+        upgrade: {
+            id: 'adgdhassdfgs',
+            mult: 0.32,
+            price: 1,
+            level: 1,
+            mod: 0.1,
+            unlockedLevel: 100,
+        },
+    },
+    {
+        id: 'hero2',
+        name: 'wizard',
+        hp: 100,
+        dps: 1,
+        price: 20,
+        level: 1,
+        priceMult: 20,
+        upgrade: {
+            id: 'adgdhassdfgs',
+            mult: 0.32,
+            price: 1,
+            level: 1,
+            mod: 0.1,
+            unlockedLevel: 100,
+        },
+    },
+    {
+        id: 'hero3',
+        name: 'warrior',
+        hp: 100,
+        dps: 1,
+        price: 20,
+        level: 1,
+        priceMult: 20,
+        upgrade: {
+            id: 'adgdhassdfgs',
+            mult: 0.32,
+            price: 1,
+            level: 1,
+            mod: 0.1,
+            unlockedLevel: 100,
+        },
+    },
+    {
+        id: 'hero4',
+        name: 'archer',
+        hp: 100,
+        dps: 1,
+        price: 20,
+        level: 1,
+        priceMult: 20,
+        upgrade: {
+            id: 'adgdhassdfgs',
+            mult: 0.32,
+            price: 1,
+            level: 1,
+            mod: 0.1,
+            unlockedLevel: 100,
+        },
+    },
 ];

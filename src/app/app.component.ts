@@ -30,7 +30,7 @@ import { PlayerInventoryComponent } from './components/player-inventory/player-i
         UpgradesComponent,
         CreateNameComponent,
         HeroesListComponent,
-        PlayerInventoryComponent
+        PlayerInventoryComponent,
     ],
     templateUrl: './app.component.html',
 })
@@ -58,7 +58,9 @@ export class AppComponent implements AfterViewInit {
                     const items = _playerData._items;
                     const heroes = _playerData._heroes;
                     const dps = _playerData._dps;
-                    
+
+                    console.log(heroes);
+
                     this.PlayerData = new Player(
                         name,
                         gold,
@@ -82,9 +84,9 @@ export class AppComponent implements AfterViewInit {
                         0,
                         1
                     );
-                    console.log(scene.Heroes)
+                    console.log(scene.Heroes);
                     scene._player = this.PlayerData;
-                    console.log(JSON.stringify(this.PlayerData))
+                    console.log(JSON.stringify(this.PlayerData));
                     this._localService.saveData(
                         'playerData',
                         JSON.stringify(this.PlayerData)
