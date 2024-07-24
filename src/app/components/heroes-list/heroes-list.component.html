@@ -1,19 +1,19 @@
 <div style="">
-    @for(hero of heroList; track hero.Id){ @if(hero.Level<=1){
+    @for(hero of heroList; track hero.id){ @if(hero.level<=1){
     <div></div>
     } @else{
     <div style="margin: 12px">
         <div style="display: flex; flex-direction: column">
             <span style="align-self: center">
-                <img src="./assets/characters/{{ hero.Name }}.png" />
+                <img src="./assets/characters/{{ hero.name }}.png" />
             </span>
             <label></label>
         </div>
         <div style="display: flex; justify-content: space-between">
-            <p>Hp:{{ hero.Hp }}</p>
-            <p>Dps:{{ hero.Dps }}</p>
+            <p>Hp:{{ hero.hp }}</p>
+            <p>Dps:{{ hero.dps }}</p>
         </div>
-        <p>Level:{{ hero.Level }}</p>
+        <p>Level:{{ hero.level }}</p>
         <button class="button" (click)="openInventory(hero)">Inventory</button>
     </div>
     } }

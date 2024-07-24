@@ -1,44 +1,25 @@
 import { IHero, IUpgrade } from '@interfaces';
 import { GameObjects, Scene, Tilemaps } from 'phaser';
+import Hero from 'src/Entities/Hero';
 
 export default class HeroGameObject extends Phaser.GameObjects.Sprite  {
     private _texture: string | Phaser.Textures.Texture;
     private _map: Tilemaps.Tilemap;
     private _target: { x: number; y: number } = { x: 0, y: 0 };
-    private _id: string;
-    private _name: string;
-    private _price: number;
-    private _level: number;
-    private _hp: number;
-    private _maxHp: number;
-    private _dps: number;
-    private _upgrade: IUpgrade;
+    private _heroStats: Hero;
     constructor(
         scene: Scene,
         x: number,
         y: number,
         texture: string,
         map: Tilemaps.Tilemap,
-        id: string,
-        name: string,
-        price: number,
-        level: number,
-        hp: number,
-        maxHp: number,
-        dps: number,
-        frame?: string | number
+        heroStats: Hero
     ) {
-        super(scene, x, y, texture, frame);
+        super(scene, x, y, texture);
         this._texture = texture;
         this._map = map;
+        this._heroStats = heroStats;
 
-        this._id = id;
-        this._name = name;
-        this._price = price;
-        this._level = level;
-        this._hp = hp;
-        this._maxHp = maxHp;
-        this._dps = dps;
 
         this.initAnimations();
         this.setOrigin(0, 0);
@@ -90,59 +71,13 @@ export default class HeroGameObject extends Phaser.GameObjects.Sprite  {
         this._target.x = x;
         this._target.y = y;
     }
-    public get Id(): string {
-        return this._id;
+    public get HeroStats(): Hero {
+        return this._heroStats;
     }
 
-    public set Id(value: string) {
-        this._id = value;
+    public set HeroStats(value: Hero) {
+        this._heroStats = value;
     }
 
-    public get Name(): string {
-        return this._name;
-    }
-
-    public set Name(value: string) {
-        this._name = value;
-    }
-
-    public get Price(): number {
-        return this._price;
-    }
-
-    public set Price(value: number) {
-        this._price = value;
-    }
-
-    public get Level(): number {
-        return this._level;
-    }
-
-    public set Level(value: number) {
-        this._level = value;
-    }
-
-    public get Hp(): number {
-        return this._hp;
-    }
-
-    public set Hp(value: number) {
-        this._hp = value;
-    }
-
-    public get MaxHp(): number {
-        return this._maxHp;
-    }
-
-    public set MaxHp(value: number) {
-        this._maxHp = value;
-    }
-
-    public get Dps(): number {
-        return this._dps;
-    }
-
-    public set Dps(value: number) {
-        this._dps = value;
-    }
+    
 }

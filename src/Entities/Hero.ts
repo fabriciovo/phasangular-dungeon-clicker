@@ -1,6 +1,5 @@
 import { IHero, IUpgrade } from "@interfaces";
 
-
 export default class Hero implements IHero {
     private _id: string;
     private _name: string;
@@ -10,65 +9,89 @@ export default class Hero implements IHero {
     private _upgrade: IUpgrade;
     private _priceMult: number;
     private _hp: number;
-    _maxHp:number;
-    constructor(id:string, name:string, price:number, dps:number, level:number, upgrade:IUpgrade, priecMult: number, hp: number){
+    private _maxHp: number;
 
+    constructor(id: string, name: string, price: number, dps: number, level: number, upgrade: IUpgrade, priceMult: number, hp: number) {
+        this._id = id;
+        this._name = name;
+        this._price = price;
+        this._dps = dps;
+        this._level = level;
+        this._upgrade = upgrade;
+        this._priceMult = priceMult;
+        this._hp = hp;
+        this._maxHp = hp; 
     }
 
-    public get Id(): string {
+    public get id(): string {
         return this._id;
     }
 
-    public set Id(value: string) {
+    public set id(value: string) {
         this._id = value;
     }
 
-    public get Name(): string {
+    get name(): string {
         return this._name;
     }
 
-    public set Name(value: string) {
+    set name(value: string) {
         this._name = value;
     }
 
-    public get Price(): number {
+    get price(): number {
         return this._price;
     }
 
-    public set Price(value: number) {
+    set price(value: number) {
         this._price = value;
     }
 
-    public get Level(): number {
-        return this._level;
-    }
-
-    public set Level(value: number) {
-        this._level = value;
-    }
-
-    public get Hp(): number {
-        return this._hp;
-    }
-
-    public set Hp(value: number) {
-        this._hp = value;
-    }
-
-    public get MaxHp(): number {
-        return this._maxHp;
-    }
-
-    public set MaxHp(value: number) {
-        this._maxHp = value;
-    }
-
-    public get Dps(): number {
+    get dps(): number {
         return this._dps;
     }
 
-    public set Dps(value: number) {
+    set dps(value: number) {
         this._dps = value;
     }
 
+    get level(): number {
+        return this._level;
+    }
+
+    set level(value: number) {
+        this._level = value;
+    }
+
+    get upgrade(): IUpgrade {
+        return this._upgrade;
+    }
+
+    set upgrade(value: IUpgrade) {
+        this._upgrade = value;
+    }
+
+    get priceMult(): number {
+        return this._priceMult;
+    }
+
+    set priceMult(value: number) {
+        this._priceMult = value;
+    }
+
+    get hp(): number {
+        return this._hp;
+    }
+
+    set hp(value: number) {
+        this._hp = value;
+    }
+
+    get maxHp(): number {
+        return this._maxHp;
+    }
+
+    set maxHp(value: number) {
+        this._maxHp = value;
+    }
 }
