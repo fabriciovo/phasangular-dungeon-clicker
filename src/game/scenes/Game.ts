@@ -2,7 +2,7 @@ import { Scene, Events, Cameras, GameObjects, Time, Tilemaps } from 'phaser';
 import Monster from '../gameObjects/Monster';
 import { EventBus } from '../EventBus';
 import Player from '../Player';
-import Hero from '../gameObjects/Hero';
+import Hero from '../gameObjects/HeroGameObject';
 
 export class Game extends Scene {
     private _background: GameObjects.Image;

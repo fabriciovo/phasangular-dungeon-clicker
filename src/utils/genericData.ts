@@ -1,4 +1,4 @@
-import Hero from '@gameObjects/Hero';
+import Hero from '@gameObjects/HeroGameObject';
 import { IHero, IItem } from '@interfaces';
 
 export const START_ITEMS_DATA: IItem[] = [

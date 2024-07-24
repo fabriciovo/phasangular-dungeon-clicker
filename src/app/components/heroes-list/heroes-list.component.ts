@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import Hero from '@gameObjects/Hero';
+import Hero from '@gameObjects/HeroGameObject';
 
 @Component({
     selector: 'app-heroes-list',

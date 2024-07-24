@@ -1,7 +1,7 @@
 import { IHero, IUpgrade } from '@interfaces';
 import { GameObjects, Scene, Tilemaps } from 'phaser';
 
-export default class Hero extends Phaser.GameObjects.Sprite implements IHero  {
+export default class HeroGameObject extends Phaser.GameObjects.Sprite  {
     private _texture: string | Phaser.Textures.Texture;
     private _map: Tilemaps.Tilemap;
     private _target: { x: number; y: number } = { x: 0, y: 0 };

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { EventBus } from '../../../game/EventBus';
-import Hero from '@gameObjects/Hero';
+import Hero from '@gameObjects/HeroGameObject';
 
 @Component({
     selector: 'app-heroes',

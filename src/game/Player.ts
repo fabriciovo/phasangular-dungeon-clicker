@@ -1,7 +1,7 @@
 import Monster from '@gameObjects/Monster';
 import { EventBus } from './EventBus';
 import { IItem, IUpgrade, IPlayerData, IHero } from '@interfaces';
-import Hero from '@gameObjects/Hero';
+import Hero from '@gameObjects/HeroGameObject';
 
 export default class Player {
     private _name: string;
